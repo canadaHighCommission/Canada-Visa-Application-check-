@@ -47,15 +47,7 @@
     </div>
 </div>
 
-<script>
-    function speak(text) {
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = text;
-        msg.lang = 'bn-BD'; // বাংলা ভয়েস
-        window.speechSynthesis.speak(msg);
-    }
-
-    function checkStatus() {
+function checkStatus() {
         const passport = document.getElementById('passport').value;
         const resultDiv = document.getElementById('result');
 
@@ -68,6 +60,7 @@
         resultDiv.style.display = "block";
         resultDiv.style.backgroundColor = "#eef";
         resultDiv.style.color = "#333";
+        resultDiv.style.border = "1px solid #ddd";
         resultDiv.innerHTML = "<b>যাচাই করা হচ্ছে...</b>";
         
         speak("আপনার স্ট্যাটাস যাচাই করা হচ্ছে, দয়া করে অপেক্ষা করুন");
@@ -76,12 +69,21 @@
             resultDiv.style.backgroundColor = "#d4edda";
             resultDiv.style.color = "#155724";
             resultDiv.style.border = "1px solid #c3e6cb";
-            const successText = "অভিনন্দন! আপনার কানাডা ভিসা অ্যাপ্রুভ হয়েছে। আপনার ভিসা সংগ্রহ করুন।";
-            resultDiv.innerHTML = "<strong>Status: APPROVED</strong><br>" + successText;
+            
+            const successText = "অভিনন্দন! আপনার কানাডা ভিসা অ্যাপ্রুভ হয়েছে।";
+            
+            // এখানে ছবি এবং পিডিএফ লিংকের কোড যোগ করা হয়েছে
+            resultDiv.innerHTML = `
+                <strong>Status: APPROVED</strong><br>
+                ${successText}<br><br>
+                
+                <img src="your-image.jpg" alt="Visa Copy" style="width:100%; border-radius:5px; margin-bottom:10px;">
+                
+                <a href="your-file.pdf" target="_blank" style="display:inline-block; background:#155724; color:white; padding:10px 15px; text-decoration:none; border-radius:5px; font-size:14px;">
+                    ভিসা কপি ডাউনলোড করুন (PDF)
+                </a>
+            `;
+            
             speak(successText);
         }, 3000);
     }
-</script>
-
-</body>
-</html>

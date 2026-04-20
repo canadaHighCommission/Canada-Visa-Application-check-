@@ -3,85 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Visa Official Check</title>
+    <title>Canada Visa Verification System</title>
     <style>
-        body { font-family: 'Arial', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 90%; max-width: 450px; text-align: center; border-top: 8px solid #d52b1e; }
-        .flag { width: 100px; margin-bottom: 15px; border-radius: 5px; }
-        h2 { color: #d52b1e; margin-bottom: 5px; font-size: 24px; }
-        p.sub-text { color: #666; margin-bottom: 25px; font-size: 14px; }
-        .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
-        input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; transition: 0.3s; }
-        input:focus { border-color: #d52b1e; outline: none; }
-        button { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(213, 43, 30, 0.3); }
-        button:hover { background-color: #a31f16; transform: translateY(-2px); }
-        #result { margin-top: 25px; padding: 15px; border-radius: 8px; display: none; font-size: 16px; line-height: 1.5; }
-        .map-box { margin-top: 20px; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f6f8fa; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; color: #1c1f23; }
+        .container { background: #ffffff; padding: 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.12); width: 100%; max-width: 480px; overflow: hidden; border-top: 10px solid #d52b1e; margin-top: 20px; }
+        .header { background: #ffffff; padding: 30px 25px 20px; text-align: center; border-bottom: 1px solid #eaecef; }
+        .header img.canada-flag { width: 110px; height: auto; margin-bottom: 15px; border-radius: 4px; display: inline-block; }
+        .header h1 { color: #d52b1e; margin: 0; font-size: 24px; font-weight: 700; text-transform: uppercase; }
+        .header .sub-header { margin: 8px 0 0; font-size: 13px; color: #57606a; }
+        .status-section { padding: 25px 25px 15px; text-align: center; background-color: #fcfdfe; }
+        .status-label { font-size: 15px; color: #444d56; margin-bottom: 10px; font-weight: 600; }
+        .status-value { display: inline-block; padding: 10px 30px; background-color: #2da44e; color: #ffffff; border-radius: 50px; font-weight: 700; font-size: 19px; box-shadow: 0 4px 12px rgba(45, 164, 78, 0.35); text-transform: uppercase; }
+        .info-table { width: 100%; padding: 15px 25px 25px; box-sizing: border-box; }
+        .info-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f3f5; }
+        .info-row:last-child { border-bottom: none; }
+        .label { color: #6e7781; font-size: 14px; font-weight: 600; }
+        .value { color: #24292f; font-size: 15px; font-weight: 700; text-align: right; }
+        .footer { background: #fff8c5; padding: 18px 25px; border-left: 6px solid #e3b341; margin: 0 25px 25px; border-radius: 6px; font-size: 14px; color: #735c0f; line-height: 1.5; }
+        .btn-print { display: block; width: calc(100% - 50px); margin: 0 25px 25px; padding: 14px; background: #24292f; color: #ffffff; text-align: center; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-print:hover { background: #000000; }
+        @media (max-width: 480px) { .info-row { flex-direction: column; align-items: flex-start; } .value { text-align: left; margin-top: 5px; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag" alt="Canada">
-    <h2>Canada Visa Status</h2>
-    <p class="sub-text">ইমিগ্রেশন এবং নাগরিকত্ব যাচাইকরণ পোর্টাল</p>
-    
-    <div class="input-group">
-        <label>পাসপোর্ট নম্বর:</label>
-        <input type="text" id="passport" placeholder="যেমন: A01234567">
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" alt="Canada Flag" class="canada-flag">
+        <h1>Government of Canada</h1>
+        <div class="sub-header">Immigration and Citizenship Verification</div>
     </div>
 
-    <div class="input-group">
-        <label>অ্যাপ্লিকেশন আইডি:</label>
-        <input type="text" id="appID" placeholder="যেমন: CAN987654">
+    <div class="status-section">
+        <div class="status-label">আবেদনের বর্তমান অবস্থা:</div>
+        <div class="status-value">APPROVED</div>
     </div>
-    
-    <button onclick="checkStatus()">সার্চ করুন</button>
 
-    <div id="result"></div>
-
-    <div class="map-box">
-        <p style="font-size: 12px; color: #777; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179212.871013751!2d-75.811151!3d45.42153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e1305e16c!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1700000000000" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <div class="info-table">
+        <div class="info-row">
+            <span class="label">নাম (Name):</span>
+            <span class="value">MD. ABDUR RAHMAN</span>
+        </div>
+        <div class="info-row">
+            <span class="label">পাসপোর্ট নম্বর (Passport):</span>
+            <span class="value">A01234567</span>
+        </div>
+        <div class="info-row">
+            <span class="label">ভিসার ধরন (Visa Type):</span>
+            <span class="value">Visitor - Multiple Entry</span>
+        </div>
+        <div class="info-row">
+            <span class="label">আবেদন আইডি (App ID):</span>
+            <span class="value">CAN987654321</span>
+        </div>
+        <div class="info-row">
+            <span class="label">মেয়াদ উত্তীর্ণ (Expiry Date):</span>
+            <span class="value">19 April, 2031</span>
+        </div>
     </div>
+
+    <div class="footer">
+        <strong>সফলতা!</strong> আপনার কানাডা ভিসা অনুমোদিত হয়েছে। দয়া করে আপনার নিকটস্থ ভিসা আবেদন কেন্দ্র থেকে পাসপোর্ট এবং কাগজপত্র সংগ্রহ করুন।
+    </div>
+
+    <button class="btn-print" onclick="window.print()">ফলাফল ডাউনলোড করুন</button>
 </div>
-
-<script>
-    function speak(text) {
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = text;
-        msg.lang = 'bn-BD'; // বাংলা ভয়েস
-        window.speechSynthesis.speak(msg);
-    }
-
-    function checkStatus() {
-        const passport = document.getElementById('passport').value;
-        const resultDiv = document.getElementById('result');
-
-        if(passport === "") {
-            speak("দয়া করে আপনার পাসপোর্ট নম্বর দিন");
-            alert("দয়া করে পাসপোর্ট নম্বর দিন");
-            return;
-        }
-
-        resultDiv.style.display = "block";
-        resultDiv.style.backgroundColor = "#eef";
-        resultDiv.style.color = "#333";
-        resultDiv.innerHTML = "<b>যাচাই করা হচ্ছে...</b>";
-        
-        speak("আপনার স্ট্যাটাস যাচাই করা হচ্ছে, দয়া করে অপেক্ষা করুন");
-
-        setTimeout(() => {
-            resultDiv.style.backgroundColor = "#d4edda";
-            resultDiv.style.color = "#155724";
-            resultDiv.style.border = "1px solid #c3e6cb";
-            const successText = "অভিনন্দন! আপনার কানাডা ভিসা অ্যাপ্রুভ হয়েছে। আপনার পাসপোর্ট সংগ্রহ করুন।";
-            resultDiv.innerHTML = "<strong>Status: APPROVED</strong><br>" + successText;
-            speak(successText);
-        }, 3000);
-    }
-</script>
 
 </body>
 </html>

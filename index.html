@@ -3,71 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Visa Verification System</title>
+    <title>Canada Visa Official Portal</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f6f8fa; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; color: #1c1f23; }
-        .container { background: #ffffff; padding: 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.12); width: 100%; max-width: 480px; overflow: hidden; border-top: 10px solid #d52b1e; margin-top: 20px; }
-        .header { background: #ffffff; padding: 30px 25px 20px; text-align: center; border-bottom: 1px solid #eaecef; }
-        .header img.canada-flag { width: 110px; height: auto; margin-bottom: 15px; border-radius: 4px; display: inline-block; }
-        .header h1 { color: #d52b1e; margin: 0; font-size: 24px; font-weight: 700; text-transform: uppercase; }
-        .header .sub-header { margin: 8px 0 0; font-size: 13px; color: #57606a; }
-        .status-section { padding: 25px 25px 15px; text-align: center; background-color: #fcfdfe; }
-        .status-label { font-size: 15px; color: #444d56; margin-bottom: 10px; font-weight: 600; }
-        .status-value { display: inline-block; padding: 10px 30px; background-color: #2da44e; color: #ffffff; border-radius: 50px; font-weight: 700; font-size: 19px; box-shadow: 0 4px 12px rgba(45, 164, 78, 0.35); text-transform: uppercase; }
-        .info-table { width: 100%; padding: 15px 25px 25px; box-sizing: border-box; }
-        .info-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f3f5; }
-        .info-row:last-child { border-bottom: none; }
-        .label { color: #6e7781; font-size: 14px; font-weight: 600; }
-        .value { color: #24292f; font-size: 15px; font-weight: 700; text-align: right; }
-        .footer { background: #fff8c5; padding: 18px 25px; border-left: 6px solid #e3b341; margin: 0 25px 25px; border-radius: 6px; font-size: 14px; color: #735c0f; line-height: 1.5; }
-        .btn-print { display: block; width: calc(100% - 50px); margin: 0 25px 25px; padding: 14px; background: #24292f; color: #ffffff; text-align: center; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; transition: 0.3s; }
-        .btn-print:hover { background: #000000; }
-        @media (max-width: 480px) { .info-row { flex-direction: column; align-items: flex-start; } .value { text-align: left; margin-top: 5px; } }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { background: white; padding: 0; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 100%; max-width: 400px; overflow: hidden; border-top: 8px solid #d52b1e; }
+        
+        /* সার্চ পেজ স্টাইল */
+        .search-box { padding: 30px 25px; text-align: center; }
+        .flag-top { width: 80px; margin-bottom: 10px; }
+        h2 { color: #d52b1e; margin: 0 0 5px; font-size: 22px; }
+        .sub-text { color: #666; font-size: 13px; margin-bottom: 25px; }
+        input { width: 100%; padding: 14px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 15px; background: #f9f9f9; }
+        button { width: 100%; padding: 14px; background: #d52b1e; color: white; border: none; border-radius: 10px; font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(213, 43, 30, 0.3); }
+        button:hover { background: #b02319; }
+
+        /* রেজাল্ট পেজ স্টাইল (শুরুতে লুকানো) */
+        #result-page { display: none; padding: 25px; }
+        .status-badge { background: #2da44e; color: white; padding: 8px 20px; border-radius: 50px; font-weight: bold; margin: 15px 0; display: inline-block; }
+        .info-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f1f1f1; font-size: 14px; }
+        .label { color: #777; font-weight: 600; }
+        .value { color: #222; font-weight: 700; }
+        
+        /* ম্যাপ বক্স */
+        .map-box { margin-top: 20px; border-radius: 10px; overflow: hidden; border: 1px solid #eee; }
+        .loading { display: none; font-weight: bold; color: #d52b1e; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" alt="Canada Flag" class="canada-flag">
-        <h1>Government of Canada</h1>
-        <div class="sub-header">Immigration and Citizenship Verification</div>
-    </div>
+<div class="card">
+    <div id="search-page" class="search-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag-top" alt="Canada">
+        <h2>Canada Visa Status</h2>
+        <p class="sub-text">ইমিগ্রেশন এবং নাগরিকত্ব যাচাইকরণ পোর্টাল</p>
+        
+        <input type="text" id="passport" placeholder="পাসপোর্ট নম্বর দিন">
+        <input type="text" id="appID" placeholder="অ্যাপ্লিকেশন আইডি দিন">
+        
+        <button onclick="processSearch()">সার্চ করুন</button>
+        <div id="loader" class="loading">যাচাই করা হচ্ছে...</div>
 
-    <div class="status-section">
-        <div class="status-label">আবেদনের বর্তমান অবস্থা:</div>
-        <div class="status-value">APPROVED</div>
-    </div>
-
-    <div class="info-table">
-        <div class="info-row">
-            <span class="label">নাম (Name):</span>
-            <span class="value">MD. ABDUR RAHMAN</span>
-        </div>
-        <div class="info-row">
-            <span class="label">পাসপোর্ট নম্বর (Passport):</span>
-            <span class="value">A01234567</span>
-        </div>
-        <div class="info-row">
-            <span class="label">ভিসার ধরন (Visa Type):</span>
-            <span class="value">Visitor - Multiple Entry</span>
-        </div>
-        <div class="info-row">
-            <span class="label">আবেদন আইডি (App ID):</span>
-            <span class="value">CAN987654321</span>
-        </div>
-        <div class="info-row">
-            <span class="label">মেয়াদ উত্তীর্ণ (Expiry Date):</span>
-            <span class="value">19 April, 2031</span>
+        <div class="map-box">
+            <p style="font-size: 11px; color: #888; margin: 5px;">📍 টরেন্টো, ওন্টারিও, কানাডা</p>
+            <img src="https://maps.googleapis.com/maps/api/staticmap?center=Toronto&zoom=13&size=400x150&key=YOUR_KEY" style="width:100%; filter: grayscale(0.5);" alt="Map">
         </div>
     </div>
 
-    <div class="footer">
-        <strong>সফলতা!</strong> আপনার কানাডা ভিসা অনুমোদিত হয়েছে। দয়া করে আপনার নিকটস্থ ভিসা আবেদন কেন্দ্র থেকে পাসপোর্ট এবং কাগজপত্র সংগ্রহ করুন।
-    </div>
+    <div id="result-page">
+        <div style="text-align: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 60px;" alt="Canada">
+            <h3 style="margin: 10px 0 0; color: #d52b1e;">Government of Canada</h3>
+            <div class="status-badge">APPROVED</div>
+        </div>
 
-    <button class="btn-print" onclick="window.print()">ফলাফল ডাউনলোড করুন</button>
+        <div class="info-row"><span class="label">নাম (Name):</span> <span class="value">MD. ABDUR RAHMAN</span></div>
+        <div class="info-row"><span class="label">পাসপোর্ট (Passport):</span> <span id="res-passport" class="value"></span></div>
+        <div class="info-row"><span class="label">ভিসার ধরন (Visa Type):</span> <span class="value">Visitor - Multiple Entry</span></div>
+        <div class="info-row"><span class="label">মেয়াদ (Expiry Date):</span> <span class="value">19 April, 2031</span></div>
+
+        <div style="background: #fff8c5; padding: 15px; border-left: 5px solid #e3b341; margin-top: 20px; font-size: 13px; border-radius: 5px;">
+            <strong>সফলতা!</strong> আপনার কানাডা ভিসা অনুমোদিত হয়েছে। দয়া করে আপনার নিকটস্থ ভিসা কেন্দ্র থেকে পাসপোর্ট সংগ্রহ করুন।
+        </div>
+        <button style="margin-top: 20px; background: #333;" onclick="location.reload()">আবার সার্চ করুন</button>
+    </div>
 </div>
+
+<script>
+    function speak(text) {
+        window.speechSynthesis.cancel(); // আগের ভয়েস বন্ধ করতে
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = 'bn-BD';
+        window.speechSynthesis.speak(msg);
+    }
+
+    function processSearch() {
+        const passport = document.getElementById('passport').value;
+        const appID = document.getElementById('appID').value;
+        const loader = document.getElementById('loader');
+
+        if(passport === "" || appID === "") {
+            speak("দয়া করে আপনার পাসপোর্ট নম্বর এবং অ্যাপ্লিকেশন আইডি সঠিক ভাবে দিন");
+            alert("সবগুলো ঘর পূরণ করুন");
+            return;
+        }
+
+        // লোডিং শুরু
+        loader.style.display = "block";
+        speak("আপনার স্ট্যাটাস যাচাই করা হচ্ছে, দয়া করে অপেক্ষা করুন");
+
+        setTimeout(() => {
+            loader.style.display = "none";
+            document.getElementById('search-page').style.display = "none";
+            document.getElementById('result-page').style.display = "block";
+            document.getElementById('res-passport').innerText = passport;
+            
+            speak("অভিনন্দন! আপনার কানাডা ভিসা অনুমোদিত হয়েছে। আপনার পাসপোর্ট সংগ্রহ করুন।");
+        }, 3500);
+    }
+</script>
 
 </body>
 </html>

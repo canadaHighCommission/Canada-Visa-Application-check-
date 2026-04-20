@@ -25,16 +25,16 @@
 <div class="container">
     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag" alt="Canada">
     <h2>Canada Visa Status</h2>
-    <p class="sub-text">ইমিগ্রেশন এবং ভিসা নাগরিকত্ব যাচাইকরণ পোর্টাল</p>
+    <p class="sub-text">ইমিগ্রেশন এবং নাগরিকত্ব যাচাইকরণ পোর্টাল</p>
     
     <div class="input-group">
         <label>পাসপোর্ট নম্বর:</label>
-        <input type="text" id="passport" placeholder="A01234567">
+        <input type="text" id="passport" placeholder="যেমন: A01234567">
     </div>
 
     <div class="input-group">
         <label>অ্যাপ্লিকেশন আইডি:</label>
-        <input type="text" id="appID" placeholder="CAN987654">
+        <input type="text" id="appID" placeholder="যেমন: CAN987654">
     </div>
     
     <button onclick="checkStatus()">সার্চ করুন</button>
@@ -47,7 +47,15 @@
     </div>
 </div>
 
-function checkStatus() {
+<script>
+    function speak(text) {
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = 'bn-BD'; // বাংলা ভয়েস
+        window.speechSynthesis.speak(msg);
+    }
+
+    function checkStatus() {
         const passport = document.getElementById('passport').value;
         const resultDiv = document.getElementById('result');
 
@@ -60,7 +68,6 @@ function checkStatus() {
         resultDiv.style.display = "block";
         resultDiv.style.backgroundColor = "#eef";
         resultDiv.style.color = "#333";
-        resultDiv.style.border = "1px solid #ddd";
         resultDiv.innerHTML = "<b>যাচাই করা হচ্ছে...</b>";
         
         speak("আপনার স্ট্যাটাস যাচাই করা হচ্ছে, দয়া করে অপেক্ষা করুন");
@@ -69,21 +76,12 @@ function checkStatus() {
             resultDiv.style.backgroundColor = "#d4edda";
             resultDiv.style.color = "#155724";
             resultDiv.style.border = "1px solid #c3e6cb";
-            
-            const successText = "অভিনন্দন! আপনার কানাডা ভিসা অ্যাপ্রুভ হয়েছে।";
-            
-            // এখানে ছবি এবং পিডিএফ লিংকের কোড যোগ করা হয়েছে
-            resultDiv.innerHTML = `
-                <strong>Status: APPROVED</strong><br>
-                ${successText}<br><br>
-                
-                <img src="your-image.jpg" alt="Visa Copy" style="width:100%; border-radius:5px; margin-bottom:10px;">
-                
-                <a href="your-file.pdf" target="_blank" style="display:inline-block; background:#155724; color:white; padding:10px 15px; text-decoration:none; border-radius:5px; font-size:14px;">
-                    ভিসা কপি ডাউনলোড করুন (PDF)
-                </a>
-            `;
-            
+            const successText = "অভিনন্দন! আপনার কানাডা ভিসা অ্যাপ্রুভ হয়েছে। আপনার পাসপোর্ট সংগ্রহ করুন।";
+            resultDiv.innerHTML = "<strong>Status: APPROVED</strong><br>" + successText;
             speak(successText);
         }, 3000);
     }
+</script>
+
+</body>
+</html>

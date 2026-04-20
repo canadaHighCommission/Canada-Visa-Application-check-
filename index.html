@@ -3,48 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Immigration and Citizenship - Visa Status</title>
+    <title>Canada Immigration - Official Status</title>
     <style>
-        /* অরজিনাল ফন্ট এবং বেসিক স্টাইল */
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; }
         
-        .main-container { width: 100%; height: 100%; max-width: 500px; background: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow-y: auto; position: relative; }
+        .main-container { width: 100%; max-width: 500px; background: #fff; min-height: 100vh; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
         
-        /* সরকারি সাইটের রেড বর্ডার হেডার */
-        .top-red-line { height: 6px; background-color: #d52b1e; width: 100%; position: sticky; top: 0; z-index: 10; }
+        .top-red-line { height: 8px; background: #d52b1e; width: 100%; position: sticky; top: 0; z-index: 100; }
 
-        .header { text-align: center; padding: 40px 20px 20px; }
-        .canada-logo { width: 120px; height: auto; margin-bottom: 10px; }
-        .govt-text { color: #d52b1e; font-size: 24px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
-        .sub-govt-text { color: #555; font-size: 14px; margin-top: 5px; }
+        /* হেডার স্টাইল */
+        .header { text-align: center; padding: 50px 20px 30px; border-bottom: 1px solid #f0f0f0; }
+        .canada-logo { width: 130px; margin-bottom: 15px; }
+        .govt-name { color: #d52b1e; font-size: 26px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .portal-text { color: #666; font-size: 14px; margin-top: 5px; font-weight: 500; }
 
-        /* ইনপুট সেকশন */
-        .content-box { padding: 25px; }
-        .input-group { margin-bottom: 20px; position: relative; }
-        input { width: 100%; padding: 16px; border: 1.5px solid #ccc; border-radius: 8px; font-size: 16px; box-sizing: border-box; transition: 0.3s; background: #fafafa; }
-        input:focus { border-color: #d52b1e; outline: none; background: #fff; }
-
-        .btn-search { width: 100%; padding: 16px; background: #d52b1e; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(213, 43, 30, 0.2); transition: 0.3s; }
-        .btn-search:active { transform: scale(0.98); }
-
-        /* রেজাল্ট সেকশন */
-        #result-area { display: none; padding: 20px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .status-badge { background: #28a745; color: #fff; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 20px; text-align: center; margin-bottom: 30px; letter-spacing: 1px; }
+        /* এনিমেটেড টিক মার্ক এবং এপ্রুভড বক্স */
+        .status-container { padding: 40px 25px; text-align: center; }
         
-        .info-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; font-size: 15px; }
-        .label { color: #666; font-weight: 500; }
-        .value { color: #000; font-weight: 700; text-align: right; }
+        .success-checkmark { width: 80px; height: 80px; margin: 0 auto 20px; }
+        .check-icon { width: 80px; height: 80px; position: relative; border-radius: 50%; box-sizing: content-box; border: 4px solid #4CAF50; }
+        .check-icon::before { top: 37px; left: 15px; width: 30px; transform: rotate(45deg); border-top: 4px solid #4CAF50; }
+        .check-icon::after { top: 32px; left: 32px; width: 45px; transform: rotate(-45deg); border-top: 4px solid #4CAF50; }
+        .check-icon::before, .check-icon::after { content: ''; position: absolute; height: 0; background: #4CAF50; border-radius: 2px; }
 
-        .success-box { background: #fffde7; border-left: 5px solid #fbc02d; padding: 20px; margin-top: 30px; border-radius: 4px; font-size: 14px; color: #333; line-height: 1.6; }
+        .approved-banner { background: #2e7d32; color: white; padding: 12px 40px; border-radius: 50px; font-size: 22px; font-weight: 800; display: inline-block; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3); text-transform: uppercase; letter-spacing: 2px; }
 
-        /* ম্যাপ সেকশন */
-        .location-section { margin-top: 30px; text-align: center; }
-        .loc-text { font-size: 13px; color: #777; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
-        .map-iframe { width: 100%; height: 200px; border: 1px solid #ddd; border-radius: 10px; filter: grayscale(0.2); }
+        /* ইনফরমেশন টেবিল */
+        .info-card { padding: 10px 30px 40px; }
+        .info-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #f1f1f1; }
+        .info-row:last-child { border-bottom: none; }
+        .label { color: #757575; font-size: 14px; font-weight: 600; }
+        .value { color: #1a1a1a; font-size: 16px; font-weight: 700; text-align: right; }
 
-        .loading-overlay { display: none; text-align: center; padding: 20px; color: #d52b1e; font-weight: bold; }
+        /* সাকসেস মেসেজ বক্স */
+        .message-box { background: #fffde7; border-left: 6px solid #fbc02d; padding: 20px; margin: 20px 30px; border-radius: 4px; line-height: 1.6; }
+        .message-box strong { color: #000; display: block; margin-bottom: 5px; font-size: 16px; }
+        .message-box p { margin: 0; color: #444; font-size: 14px; }
+
+        /* প্রিন্ট বাটন */
+        .btn-print { display: block; width: calc(100% - 60px); margin: 30px auto; padding: 16px; background: #212121; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s; }
+        .btn-print:hover { background: #000; }
+
+        @media print { .btn-print { display: none; } }
     </style>
 </head>
 <body>
@@ -54,77 +54,53 @@
     
     <div class="header">
         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="canada-logo" alt="Canada Flag">
-        <p class="govt-text">Government of Canada</p>
-        <p class="sub-govt-text">ইমিগ্রেশন এবং নাগরিকত্ব যাচাইকরণ পোর্টাল</p>
+        <h1 class="govt-name">Government of Canada</h1>
+        <p class="portal-text">Immigration, Refugees and Citizenship Canada</p>
     </div>
 
-    <div id="search-page" class="content-box">
-        <div class="input-group">
-            <input type="text" id="passport" placeholder="পাসপোর্ট নম্বর দিন (যেমন: A01234567)">
-        </div>
-        <div class="input-group">
-            <input type="text" id="appID" placeholder="অ্যাপ্লিকেশন আইডি দিন">
-        </div>
-        <button class="btn-search" onclick="checkVisa()">সার্চ করুন</button>
-        
-        <div id="loader" class="loading-overlay">সার্ভার থেকে তথ্য যাচাই করা হচ্ছে...</div>
+    <div class="status-container">
+        <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle style="fill:none;stroke:#2e7d32;stroke-width:2;" cx="26" cy="26" r="25" fill="none"/>
+            <path style="fill:none;stroke:#2e7d32;stroke-width:4;stroke-linecap:round;" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        <br>
+        <div class="approved-banner">APPROVED</div>
+    </div>
 
-        <div class="location-section">
-            <p class="loc-text">📍 অটোয়া, ওন্টারিও, কানাডা</p>
-            <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179212.87101375112!2d-75.811151!3d45.421532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51d13d211694!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd" allowfullscreen="" loading="lazy"></iframe>
+    <div class="info-card">
+        <div class="info-row">
+            <span class="label">নাম (Name):</span>
+            <span class="value">MD. ABDUR RAHMAN</span>
+        </div>
+        <div class="info-row">
+            <span class="label">পাসপোর্ট (Passport):</span>
+            <span class="value">A01234567</span>
+        </div>
+        <div class="info-row">
+            <span class="label">ভিসার ধরন (Visa Type):</span>
+            <span class="value">Visitor - Multiple Entry</span>
+        </div>
+        <div class="info-row">
+            <span class="label">ইস্যু তারিখ (Issue Date):</span>
+            <span class="value">21 April, 2026</span>
+        </div>
+        <div class="info-row">
+            <span class="label">মেয়াদ (Expiry Date):</span>
+            <span class="value">19 April, 2031</span>
         </div>
     </div>
 
-    <div id="result-area">
-        <div class="status-badge">APPROVED</div>
-        
-        <div class="info-row"><span class="label">নাম (Name):</span> <span class="value">MD. ABDUR RAHMAN</span></div>
-        <div class="info-row"><span class="label">পাসপোর্ট (Passport):</span> <span id="display-passport" class="value">--</span></div>
-        <div class="info-row"><span class="label">ভিসার ধরন (Visa Type):</span> <span class="value">Visitor - Multiple Entry</span></div>
-        <div class="info-row"><span class="label">ইস্যু তারিখ (Issue Date):</span> <span class="value">21 April, 2026</span></div>
-        <div class="info-row"><span class="label">মেয়াদ (Expiry Date):</span> <span class="value">19 April, 2031</span></div>
-
-        <div class="success-box">
-            <strong>অভিনন্দন!</strong> আপনার কানাডা ভিসা সফলভাবে অনুমোদিত হয়েছে। দয়া করে আপনার নিকটস্থ ভিসা আবেদন কেন্দ্র থেকে পাসপোর্ট এবং ট্রাভেল ডকুমেন্টস সংগ্রহ করুন। আপনার ইমেল চেক করুন।
-        </div>
-        
-        <button class="btn-search" style="margin-top: 30px; background: #333;" onclick="location.reload()">আবার সার্চ করুন</button>
+    <div class="message-box">
+        <strong>অভিনন্দন!</strong>
+        <p>আপনার কানাডা ভিসা সফলভাবে অনুমোদিত হয়েছে। দয়া করে আপনার নিকটস্থ ভিসা আবেদন কেন্দ্র থেকে পাসপোর্ট এবং ট্রাভেল ডকুমেন্টস সংগ্রহ করুন। যাত্রার আগে আপনার ইমেল চেক করুন।</p>
     </div>
+
+    <button class="btn-print" onclick="window.print()">ফলাফল ডাউনলোড করুন (PDF)</button>
+
+    <p style="text-align: center; color: #aaa; font-size: 11px; padding-bottom: 20px;">
+        © 2026 Government of Canada | Verified Security Entry
+    </p>
 </div>
-
-<script>
-    function speak(text) {
-        window.speechSynthesis.cancel();
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = text;
-        msg.lang = 'bn-BD';
-        window.speechSynthesis.speak(msg);
-    }
-
-    function checkVisa() {
-        const passport = document.getElementById('passport').value;
-        const appID = document.getElementById('appID').value;
-        const loader = document.getElementById('loader');
-
-        if(passport === "" || appID === "") {
-            speak("দয়া করে আপনার পাসপোর্ট নম্বর এবং অ্যাপ্লিকেশন আইডি প্রদান করুন।");
-            alert("সবগুলো তথ্য সঠিকভাবে পূরণ করুন");
-            return;
-        }
-
-        loader.style.display = "block";
-        speak("আপনার ভিসা স্ট্যাটাস যাচাই করা হচ্ছে, দয়া করে কিছু সময় অপেক্ষা করুন।");
-
-        setTimeout(() => {
-            loader.style.display = "none";
-            document.getElementById('search-page').style.display = "none";
-            document.getElementById('result-area').style.display = "block";
-            document.getElementById('display-passport').innerText = passport.toUpperCase();
-            
-            speak("অভিনন্দন! আপনার কানাডা ভিসা অনুমোদিত হয়েছে। আপনার পাসপোর্ট সংগ্রহ করুন।");
-        }, 4000);
-    }
-</script>
 
 </body>
 </html>

@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canada Visa Check</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 50px; }
+        .search-box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); display: inline-block; }
+        input[type="text"] { padding: 10px; width: 250px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 20px; background-color: #d52b1e; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #a32016; }
+    </style>
 </head>
 <body>
-    <h1>কানাডা ভিসা চেক পোর্টালে স্বাগতম</h1>
-    <p>আপনার রেফারেন্স নম্বর দিয়ে অনুসন্ধান করুন।</p>
+    <div class="search-box">
+        <h2>ভিসা স্ট্যাটাস চেক করুন</h2>
+        <p>আপনার পাসপোর্ট নম্বর বা অ্যাপ্লিকেশন আইডি দিন:</p>
+        <input type="text" placeholder="নম্বর লিখুন...">
+        <button onclick="alert('আপনার তথ্য যাচাই করা হচ্ছে...')">সার্চ করুন</button>
+    </div>
 </body>
 </html>

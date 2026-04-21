@@ -24,29 +24,31 @@
         /* Result Screen */
         #result-screen { display: none; animation: slideUp 0.6s ease-out; }
         
+        /* User Profile Image */
+        .user-photo { width: 100px; height: 120px; object-fit: cover; border: 3px solid #d52b1e; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
         /* Advanced Tick Mark & Seal */
-        .seal-container { position: relative; margin: 20px auto; width: 100px; height: 100px; }
-        .check-icon { font-size: 60px; color: #28a745; display: block; animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .seal-container { position: relative; margin: 10px auto; width: 60px; height: 60px; }
+        .check-icon { font-size: 50px; color: #28a745; display: block; animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         
         .approved-sticker { 
             background: linear-gradient(135deg, #28a745, #218838);
             color: white; padding: 6px 20px; border-radius: 5px; 
             font-weight: 900; font-size: 18px; display: inline-block;
             transform: rotate(-5deg); border: 2px dashed #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 10px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 5px 0;
         }
 
-        .info-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-        .info-table td { padding: 12px 0; border-bottom: 1px solid #f9f9f9; font-size: 14px; }
+        .info-table { width: 100%; margin-top: 15px; border-collapse: collapse; }
+        .info-table td { padding: 10px 0; border-bottom: 1px solid #f9f9f9; font-size: 13px; }
         .label { color: #888; text-align: left; }
         .value { color: #222; font-weight: bold; text-align: right; }
 
-        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 15px; margin-top: 25px; font-size: 13px; color: #856404; line-height: 1.5; text-align: left; }
+        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 15px; margin-top: 20px; font-size: 12px; color: #856404; line-height: 1.5; text-align: left; }
 
-        /* Footer Map */
+        /* Map Area */
         #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
 
-        /* Animations */
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
     </style>
@@ -61,21 +63,23 @@
     <div id="search-screen">
         <div class="input-group">
             <label>পাসপোর্ট নম্বর (Passport):</label>
-            <input type="text" id="passport" placeholder="যেমন: A01234567">
+            <input type="text" id="passport" placeholder="A21609896">
         </div>
         <div class="input-group">
             <label>অ্যাপ্লিকেশন আইডি (App ID):</label>
-            <input type="text" id="appID" placeholder="যেমন: CAN987654321">
+            <input type="text" id="appID" placeholder="EGP87FKT51">
         </div>
         <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
         
         <div id="map-area">
             <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.2687!2d-75.6972!3d45.4215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04ff4fe495ef%3A0x26bb3a19362e24d2!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1625648593845" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.2555310631243!2d-75.6981206844439!3d45.42461467910059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04ff4fe494ef%3A0x26bb54f8654817d7!2sParliament%20Hill!5e0!3m2!1sen!2sca!4v1625000000000!5m2!1sen!2sca" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
     <div id="result-screen">
+        <img src="38153.jpg" class="user-photo" alt="MD ABU NASER">
+        
         <div class="seal-container">
             <span class="check-icon">✔</span>
         </div>
@@ -83,23 +87,24 @@
         <p style="font-size: 14px; color: #666; margin-top: 5px;">আবেদনটি অনুমোদিত করা হয়েছে</p> 
 
         <table class="info-table">
-            <tr><td class="label">নাম (Name):</td><td class="value">MD. ABDUR RAHMAN</td></tr>
-            <tr><td class="label">পাসপোর্ট নম্বর:</td><td class="value" id="res-pp">---</td></tr>
-            <tr><td class="label">ভিসার ধরন:</td><td class="value">Visitor - Multiple Entry</td></tr>
-            <tr><td class="label">আবেদন আইডি:</td><td class="value" id="res-id">---</td></tr>
-            <tr><td class="label">মেয়াদ (Expiry):</td><td class="value">19 April, 2031</td></tr>
+            <tr><td class="label">নাম (Full Name):</td><td class="value">MD ABU NASER</td></tr>
+            <tr><td class="label">পাসপোর্ট নম্বর:</td><td class="value">A21609896</td></tr>
+            <tr><td class="label">ভিসার ধরন:</td><td class="value">Work Permit (IMM 1295)</td></tr>
+            <tr><td class="label">পারমিট নম্বর:</td><td class="value">Y9L3N7F0B3</td></tr>
+            <tr><td class="label">রেফারেন্স নম্বর:</td><td class="value">EGP87FKT51</td></tr>
+            <tr><td class="label">মেয়াদ (Expiry):</td><td class="value">20 March, 2031</td></tr>
         </table>
 
         <div class="success-note">
-            <strong>সফলতা!</strong> আপনার কানাডা ভিসা অনুমোদিত হয়েছে। দয়া করে আপনার নিকটস্থ ভিসা কেন্দ্র থেকে পাসপোর্ট সংগ্রহ করুন।
+            <strong>সফলতা!</strong> আপনার কানাডা ওয়ার্ক পারমিট ভিসা সফলভাবে অনুমোদিত হয়েছে। আপনার নিয়োগকর্তা: <strong>MAGNA INTERNATIONAL INC</strong>। অনুগ্রহ করে পরবর্তী নির্দেশনার জন্য অপেক্ষা করুন।
         </div>
     </div>
 </div>
 
 <script>
-    // এখানে আপনার সঠিক আইডি সেট করুন
-    const VALID_PASSPORT = "A01234567"; 
-    const VALID_APPID = "CAN987654321";
+    // আপনার ফাইল অনুযায়ী সঠিক আইডি সেট করা হয়েছে
+    const VALID_PASSPORT = "A21609896"; 
+    const VALID_APPID = "EGP87FKT51";
 
     function welcomeVoice() {
         const msg = new SpeechSynthesisUtterance();
@@ -129,20 +134,15 @@
         btn.style.opacity = "0.7";
 
         setTimeout(() => {
-            // আইডি চেক করা হচ্ছে
             if(ppInput === VALID_PASSPORT && idInput === VALID_APPID) {
                 document.getElementById('search-screen').style.display = 'none';
                 document.getElementById('result-screen').style.display = 'block';
                 
-                document.getElementById('res-pp').innerText = ppInput;
-                document.getElementById('res-id').innerText = idInput;
-
-                speak("অভিনন্দন! আপনার আবেদনটি সফলভাবে কানাডা হাইকমিশন সরকার থেকে অনুমোদিত হয়েছে।");
+                speak("অভিনন্দন এম ডি আবু নাসের! আপনার আবেদনটি সফলভাবে কানাডা হাইকমিশন সরকার থেকে অনুমোদিত হয়েছে।");
             } else {
-                // ভুল আইডি দিলে যা হবে
                 btn.innerHTML = "সার্চ করুন";
                 btn.style.opacity = "1";
-                alert("দুঃখিত! আপনার প্রদানকৃত তথ্য সঠিক নয়। আবার চেষ্টা করুন।");
+                alert("দুঃখিত! আপনার প্রদানকৃত তথ্য সঠিক নয়।");
                 speak("দুঃখিত আপনার তথ্যটি আমাদের সার্ভারে পাওয়া যায়নি।");
             }
         }, 2500);

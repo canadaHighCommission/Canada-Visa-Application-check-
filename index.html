@@ -3,48 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Visa Official Check</title>
+    <title>Canada Visa Verification</title>
     <style>
-        body { font-family: 'Arial', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 90%; max-width: 420px; text-align: center; border-top: 8px solid #d52b1e; position: relative; }
-        .flag { width: 80px; margin-bottom: 10px; }
-        h2 { color: #d52b1e; margin: 5px 0; font-size: 22px; text-transform: uppercase; }
-        p.sub-text { color: #666; margin-bottom: 20px; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 90%; max-width: 400px; text-align: center; border-top: 10px solid #d52b1e; overflow: hidden; }
         
-        /* Input Styles */
+        /* Header */
+        .flag { width: 70px; margin-bottom: 10px; }
+        h2 { color: #d52b1e; margin: 5px 0; font-size: 20px; letter-spacing: 1px; }
+        .sub-text { color: #666; font-size: 13px; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+
+        /* Search Screen */
         .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; font-size: 14px; }
-        input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; transition: 0.3s; }
-        input:focus { border-color: #d52b1e; outline: none; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; font-size: 14px; }
+        input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; transition: 0.3s; }
+        input:focus { border-color: #d52b1e; outline: none; box-shadow: 0 0 8px rgba(213, 43, 30, 0.1); }
+        .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .search-btn:hover { background-color: #b31d14; transform: translateY(-2px); }
+
+        /* Result Screen */
+        #result-screen { display: none; animation: slideUp 0.6s ease-out; }
         
-        button { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(213, 43, 30, 0.3); }
-        button:hover { background-color: #a31f16; transform: translateY(-2px); }
-
-        /* Status Styles (Interface 2) */
-        #result-screen { display: none; text-align: left; animation: fadeIn 0.5s ease-in-out; }
-        .status-badge { background-color: #28a745; color: white; padding: 8px 25px; border-radius: 50px; display: inline-block; font-weight: bold; font-size: 18px; margin: 15px 0; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); }
-        .check-mark { color: #28a745; font-size: 50px; margin-bottom: 10px; display: block; text-align: center; }
+        /* Advanced Tick Mark & Seal */
+        .seal-container { position: relative; margin: 20px auto; width: 100px; height: 100px; }
+        .check-icon { font-size: 60px; color: #28a745; display: block; animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         
-        .info-row { border-bottom: 1px solid #f1f1f1; padding: 10px 0; display: flex; justify-content: space-between; font-size: 14px; }
-        .info-label { color: #777; font-weight: normal; }
-        .info-value { color: #333; font-weight: bold; }
+        .approved-sticker { 
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white; padding: 6px 20px; border-radius: 5px; 
+            font-weight: 900; font-size: 18px; display: inline-block;
+            transform: rotate(-5deg); border: 2px dashed #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 10px 0;
+        }
 
-        .success-box { background-color: #fff9e6; border-left: 5px solid #ffcc00; padding: 15px; margin-top: 20px; font-size: 13px; color: #856404; border-radius: 4px; }
-        .download-btn { background-color: #333; margin-top: 20px; }
+        .info-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        .info-table td { padding: 12px 0; border-bottom: 1px solid #f9f9f9; font-size: 14px; }
+        .label { color: #888; text-align: left; }
+        .value { color: #222; font-weight: bold; text-align: right; }
 
-        .map-box { margin-top: 20px; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; }
+        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 15px; margin-top: 25px; font-size: 13px; color: #856404; line-height: 1.5; text-align: left; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Footer Map (Only for Search Screen) */
+        #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
+
+        /* Animations */
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
     </style>
 </head>
-<body>
+<body onload="welcomeVoice()">
 
-<div class="container" id="main-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag" alt="Canada">
-    <div id="header-text">
-        <h2>GOVERNMENT OF CANADA</h2>
-        <p class="sub-text">Immigration and Citizenship Verification</p>
-    </div>
+<div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag">
+    <h2>GOVERNMENT OF CANADA</h2>
+    <p class="sub-text">Immigration and Citizenship Verification</p>
 
     <div id="search-screen">
         <div class="input-group">
@@ -55,36 +67,43 @@
             <label>অ্যাপ্লিকেশন আইডি (App ID):</label>
             <input type="text" id="appID" placeholder="যেমন: CAN987654321">
         </div>
-        <button onclick="checkStatus()">সার্চ করুন</button>
+        <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
+        
+        <div id="map-area">
+            <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179219.0117070397!2d-75.88219438965612!3d45.424721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e1305fe8d1!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1710000000000" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </div>
 
     <div id="result-screen">
-        <div style="text-align: center;">
-            <span class="check-mark">✔</span>
-            <p style="margin: 0; color: #555;">আবেদনের বর্তমান অবস্থা:</p>
-            <div class="status-badge">APPROVED</div>
+        <div class="seal-container">
+            <span class="check-icon">✔</span>
         </div>
+        <div class="approved-sticker">APPROVED</div>
+        <p style="font-size: 14px; color: #666; margin-top: 5px;">আবেদনের বর্তমান অবস্থা</p>
 
-        <div class="info-row"><span class="info-label">নাম (Name):</span> <span class="info-value">MD. ABDUR RAHMAN</span></div>
-        <div class="info-row"><span class="info-label">পাসপোর্ট নম্বর:</span> <span class="info-value" id="disp-pp"></span></div>
-        <div class="info-row"><span class="info-label">ভিসার ধরন:</span> <span class="info-value">Visitor - Multiple Entry</span></div>
-        <div class="info-row"><span class="info-label">আবেদন আইডি:</span> <span class="info-value" id="disp-id"></span></div>
-        <div class="info-row"><span class="info-label">মেয়াদ (Expiry):</span> <span class="info-value">19 April, 2031</span></div>
+        <table class="info-table">
+            <tr><td class="label">নাম (Name):</td><td class="value">MD. ABDUR RAHMAN</td></tr>
+            <tr><td class="label">পাসপোর্ট নম্বর:</td><td class="value" id="res-pp">---</td></tr>
+            <tr><td class="label">ভিসার ধরন:</td><td class="value">Visitor - Multiple Entry</td></tr>
+            <tr><td class="label">আবেদন আইডি:</td><td class="value" id="res-id">---</td></tr>
+            <tr><td class="label">মেয়াদ (Expiry):</td><td class="value">19 April, 2031</td></tr>
+        </table>
 
-        <div class="success-box">
+        <div class="success-note">
             <strong>সফলতা!</strong> আপনার কানাডা ভিসা অনুমোদিত হয়েছে। দয়া করে আপনার নিকটস্থ ভিসা কেন্দ্র থেকে পাসপোর্ট সংগ্রহ করুন।
         </div>
-
-        <button class="download-btn">ফলাফল ডাউনলোড করুন</button>
-    </div>
-
-    <div class="map-box">
-        <p style="font-size: 11px; color: #777; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179247.3484252445!2d-75.91855653494776!3d45.34005081045958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e1305e16c!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1713700000000!5m2!1sen!2sbd" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 </div>
 
 <script>
+    function welcomeVoice() {
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = "স্বাগতম আপনাকে কানাডা ভিসা অনলাইন প্ল্যাটফর্মে";
+        msg.lang = 'bn-BD';
+        window.speechSynthesis.speak(msg);
+    }
+
     function speak(text) {
         const msg = new SpeechSynthesisUtterance();
         msg.text = text;
@@ -92,31 +111,28 @@
         window.speechSynthesis.speak(msg);
     }
 
-    function checkStatus() {
-        const passport = document.getElementById('passport').value;
-        const appID = document.getElementById('appID').value;
+    function startProcess() {
+        const pp = document.getElementById('passport').value;
+        const id = document.getElementById('appID').value;
 
-        if(passport === "" || appID === "") {
-            alert("দয়া করে সব তথ্য পূরণ করুন");
+        if(!pp || !id) {
+            alert("সব তথ্য সঠিকভাবে প্রদান করুন");
             return;
         }
 
-        // Display Loading effect
-        const btn = document.querySelector('button');
+        const btn = document.querySelector('.search-btn');
         btn.innerHTML = "যাচাই করা হচ্ছে...";
-        btn.disabled = true;
+        btn.style.opacity = "0.7";
 
         setTimeout(() => {
-            // Switch Interfaces
             document.getElementById('search-screen').style.display = 'none';
             document.getElementById('result-screen').style.display = 'block';
             
-            // Fill Data
-            document.getElementById('disp-pp').innerText = passport;
-            document.getElementById('disp-id').innerText = appID;
-            
-            speak("অভিনন্দন! আপনার কানাডা ভিসা অনুমোদিত হয়েছে।");
-        }, 2000);
+            document.getElementById('res-pp').innerText = pp;
+            document.getElementById('res-id').innerText = id;
+
+            speak("অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে।");
+        }, 2500);
     }
 </script>
 

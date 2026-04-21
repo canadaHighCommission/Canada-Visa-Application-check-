@@ -43,7 +43,7 @@
 
         .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 15px; margin-top: 25px; font-size: 13px; color: #856404; line-height: 1.5; text-align: left; }
 
-        /* Footer Map (Only for Search Screen) */
+        /* Footer Map */
         #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
 
         /* Animations */
@@ -61,17 +61,17 @@
     <div id="search-screen">
         <div class="input-group">
             <label>পাসপোর্ট নম্বর (Passport):</label>
-            <input type="text" id="passport" placeholder="A01234567">
+            <input type="text" id="passport" placeholder="যেমন: A01234567">
         </div>
         <div class="input-group">
             <label>অ্যাপ্লিকেশন আইডি (App ID):</label>
-            <input type="text" id="appID" placeholder="CAN01234567">
+            <input type="text" id="appID" placeholder="যেমন: CAN987654321">
         </div>
         <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
         
         <div id="map-area">
             <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179219.0117070397!2d-75.88219438965612!3d45.424721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e1305fe8d1!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1710000000000" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.2687!2d-75.6972!3d45.4215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04ff4fe495ef%3A0x26bb3a19362e24d2!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1625648593845" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
@@ -79,7 +79,8 @@
         <div class="seal-container">
             <span class="check-icon">✔</span>
         </div>
-        <div class="approved-sticker">APPROVED</div        <p style="font-size: 14px; color: #666; margin-top: 5px;">আবেদনটি অনুমোদিত করা হয়েছে</p> 
+        <div class="approved-sticker">APPROVED</div>
+        <p style="font-size: 14px; color: #666; margin-top: 5px;">আবেদনটি অনুমোদিত করা হয়েছে</p> 
 
         <table class="info-table">
             <tr><td class="label">নাম (Name):</td><td class="value">MD. ABDUR RAHMAN</td></tr>
@@ -96,6 +97,10 @@
 </div>
 
 <script>
+    // এখানে আপনার সঠিক আইডি সেট করুন
+    const VALID_PASSPORT = "A01234567"; 
+    const VALID_APPID = "CAN987654321";
+
     function welcomeVoice() {
         const msg = new SpeechSynthesisUtterance();
         msg.text = "স্বাগতম আপনাকে কানাডা ভিসা অনলাইন প্ল্যাটফর্মে";
@@ -111,26 +116,35 @@
     }
 
     function startProcess() {
-        const pp = document.getElementById('passport').value;
-        const id = document.getElementById('appID').value;
+        const ppInput = document.getElementById('passport').value.trim();
+        const idInput = document.getElementById('appID').value.trim();
 
-        if(!pp || !id) {
+        if(!ppInput || !idInput) {
             alert("সব তথ্য সঠিকভাবে প্রদান করুন");
             return;
         }
 
         const btn = document.querySelector('.search-btn');
         btn.innerHTML = "যাচাই করা হচ্ছে...";
-        btn.style.opacity = "03";
+        btn.style.opacity = "0.7";
 
         setTimeout(() => {
-            document.getElementById('search-screen').style.display = 'none';
-            document.getElementById('result-screen').style.display = 'block';
-            
-            document.getElementById('res-pp').innerText = pp;
-            document.getElementById('res-id').innerText = id;
+            // আইডি চেক করা হচ্ছে
+            if(ppInput === VALID_PASSPORT && idInput === VALID_APPID) {
+                document.getElementById('search-screen').style.display = 'none';
+                document.getElementById('result-screen').style.display = 'block';
+                
+                document.getElementById('res-pp').innerText = ppInput;
+                document.getElementById('res-id').innerText = idInput;
 
-            speak("অভিনন্দন! আপনার আবেদনটি সফলভাবে কানাডা হাইকমিশন সরকার থেকে অনুমোদিত হয়েছে।");
+                speak("অভিনন্দন! আপনার আবেদনটি সফলভাবে কানাডা হাইকমিশন সরকার থেকে অনুমোদিত হয়েছে।");
+            } else {
+                // ভুল আইডি দিলে যা হবে
+                btn.innerHTML = "সার্চ করুন";
+                btn.style.opacity = "1";
+                alert("দুঃখিত! আপনার প্রদানকৃত তথ্য সঠিক নয়। আবার চেষ্টা করুন।");
+                speak("দুঃখিত আপনার তথ্যটি আমাদের সার্ভারে পাওয়া যায়নি।");
+            }
         }, 2500);
     }
 </script>

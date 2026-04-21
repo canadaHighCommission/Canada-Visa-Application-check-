@@ -105,7 +105,7 @@
         const msg = new SpeechSynthesisUtterance();
         msg.text = "স্বাগতম আপনাকে কানাডা ভিসা অনলাইন প্ল্যাটফর্মে";
         msg.lang = 'bn-BD';
-        window.speechSynthesis.fastspeak(msg);
+        window.speechSynthesis.speak(msg);
     }
 
     function speak(text) {
@@ -126,7 +126,7 @@
 
         const btn = document.querySelector('.search-btn');
         btn.innerHTML = "যাচাই করা হচ্ছে...";
-        btn.style.opacity = "0.10";
+        btn.style.opacity = "0.8";
 
         setTimeout(() => {
             // আইডি চেক করা হচ্ছে

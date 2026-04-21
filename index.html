@@ -1,139 +1,84 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Visa Verification</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 90%; max-width: 400px; text-align: center; border-top: 10px solid #d52b1e; overflow: hidden; }
-        
-        /* Header */
-        .flag { width: 70px; margin-bottom: 10px; }
-        h2 { color: #d52b1e; margin: 5px 0; font-size: 20px; letter-spacing: 1px; }
-        .sub-text { color: #666; font-size: 13px; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-
-        /* Search Screen */
-        .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; font-size: 14px; }
-        input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; transition: 0.3s; }
-        input:focus { border-color: #d52b1e; outline: none; box-shadow: 0 0 8px rgba(213, 43, 30, 0.1); }
-        .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
-        .search-btn:hover { background-color: #b31d14; transform: translateY(-2px); }
-
-        /* Result Screen */
-        #result-screen { display: none; animation: slideUp 0.6s ease-out; }
-        
-        /* Advanced Tick Mark & Seal */
-        .seal-container { position: relative; margin: 20px auto; width: 100px; height: 100px; }
-        .check-icon { font-size: 60px; color: #28a745; display: block; animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        
-        .approved-sticker { 
-            background: linear-gradient(135deg, #28a745, #218838);
-            color: white; padding: 6px 20px; border-radius: 5px; 
-            font-weight: 900; font-size: 18px; display: inline-block;
-            transform: rotate(-5deg); border: 2px dashed #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 10px 0;
-        }
-
-        .info-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-        .info-table td { padding: 12px 0; border-bottom: 1px solid #f9f9f9; font-size: 14px; }
-        .label { color: #888; text-align: left; }
-        .value { color: #222; font-weight: bold; text-align: right; }
-
-        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 15px; margin-top: 25px; font-size: 13px; color: #856404; line-height: 1.5; text-align: left; }
-
-        /* Footer Map (Only for Search Screen) */
-        #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
-
-        /* Animations */
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
-    </style>
-</head>
-<body onload="welcomeVoice()">
-
-<div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag">
-    <h2>GOVERNMENT OF CANADA</h2>
-    <p class="sub-text">Immigration and Citizenship Verification</p>
-
-    <div id="search-screen">
-        <div class="input-group">
-            <label>পাসপোর্ট নম্বর (Passport):</label>
-            <input type="text" id="passport" placeholder="A01234567">
-        </div>
-        <div class="input-group">
-            <label>অ্যাপ্লিকেশন আইডি (App ID):</label>
-            <input type="text" id="appID" placeholder="CAN01234567">
-        </div>
-        <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
-        
-        <div id="map-area">
-            <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179219.0117070397!2d-75.88219438965612!3d45.424721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e1305fe8d1!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1710000000000" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </div>
-
-    <div id="result-screen">
-        <div class="seal-container">
-            <span class="check-icon">✔</span>
-        </div>
-        <div class="approved-sticker">APPROVED</div        <p style="font-size: 14px; color: #666; margin-top: 5px;">আবেদনটি অনুমোদিত করা হয়েছে</p> 
-
-        <table class="info-table">
-            <tr><td class="label">নাম (Name):</td><td class="value">MD. ABDUR RAHMAN</td></tr>
-            <tr><td class="label">পাসপোর্ট নম্বর:</td><td class="value" id="res-pp">---</td></tr>
-            <tr><td class="label">ভিসার ধরন:</td><td class="value">Visitor - Multiple Entry</td></tr>
-            <tr><td class="label">আবেদন আইডি:</td><td class="value" id="res-id">---</td></tr>
-            <tr><td class="label">মেয়াদ (Expiry):</td><td class="value">19 April, 2031</td></tr>
-        </table>
-
-        <div class="success-note">
-            <strong>সফলতা!</strong> আপনার কানাডা ভিসা অনুমোদিত হয়েছে। দয়া করে আপনার নিকটস্থ ভিসা কেন্দ্র থেকে পাসপোর্ট সংগ্রহ করুন।
-        </div>
-    </div>
-</div>
-
-<script>
-    function welcomeVoice() {
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = "স্বাগতম আপনাকে কানাডা ভিসা অনলাইন প্ল্যাটফর্মে";
-        msg.lang = 'bn-BD';
-        window.speechSynthesis.speak(msg);
-    }
-
-    function speak(text) {
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = text;
-        msg.lang = 'bn-BD';
-        window.speechSynthesis.speak(msg);
-    }
-
-    function startProcess() {
-        const pp = document.getElementById('passport').value;
-        const id = document.getElementById('appID').value;
-
-        if(!pp || !id) {
-            alert("সব তথ্য সঠিকভাবে প্রদান করুন");
-            return;
-        }
-
-        const btn = document.querySelector('.search-btn');
-        btn.innerHTML = "যাচাই করা হচ্ছে...";
-        btn.style.opacity = "03";
-
-        setTimeout(() => {
-            document.getElementById('search-screen').style.display = 'none';
-            document.getElementById('result-screen').style.display = 'block';
-            
-            document.getElementById('res-pp').innerText = pp;
-            document.getElementById('res-id').innerText = id;
-
-            speak("অভিনন্দন! আপনার আবেদনটি সফলভাবে কানাডা হাইকমিশন সরকার থেকে অনুমোদিত হয়েছে।");
-        }, 2500);
-    }
-</script>
-
-</body>
-</html>
+‎<!DOCTYPE html>
+‎<html lang="bn">
+‎<head>
+‎    <meta charset="UTF-8">
+‎    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+‎    <title>Canada Visa Verification</title>
+‎    <style>
+‎        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+‎        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 90%; max-width: 400px; text-align: center; border-top: 10px solid #d52b1e; overflow: hidden; }
+‎        
+‎        /* Header */
+‎        .flag { width: 70px; margin-bottom: 10px; }
+‎        h2 { color: #d52b1e; margin: 5px 0; font-size: 20px; letter-spacing: 1px; }
+‎        .sub-text { color: #666; font-size: 13px; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+‎
+‎        /* Search Screen */
+‎        .input-group { text-align: left; margin-bottom: 15px; }
+‎        label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; font-size: 14px; }
+‎        input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; transition: 0.3s; }
+‎        input:focus { border-color: #d52b1e; outline: none; box-shadow: 0 0 8px rgba(213, 43, 30, 0.1); }
+‎        .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+‎        .search-btn:hover { background-color: #b31d14; transform: translateY(-2px); }
+‎
+‎        /* Result Screen */
+‎        #result-screen { display: none; animation: slideUp 0.6s ease-out; }
+‎        
+‎        /* Advanced Tick Mark & Seal */
+‎        .seal-container { position: relative; margin: 20px auto; width: 100px; height: 100px; }
+‎        .check-icon { font-size: 60px; color: #28a745; display: block; animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+‎        
+‎        .approved-sticker { 
+‎            background: linear-gradient(135deg, #28a745, #218838);
+‎            color: white; padding: 6px 20px; border-radius: 5px; 
+‎            font-weight: 900; font-size: 18px; display: inline-block;
+‎            transform: rotate(-5deg); border: 2px dashed #fff;
+‎            box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 10px 0;
+‎        }
+‎
+‎        .info-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+‎        .info-table td { padding: 12px 0; border-bottom: 1px solid #f9f9f9; font-size: 14px; }
+‎        .label { color: #888; text-align: left; }
+‎        .value { color: #222; font-weight: bold; text-align: right; }
+‎
+‎        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 15px; margin-top: 25px; font-size: 13px; color: #856404; line-height: 1.5; text-align: left; }
+‎
+‎        /* Footer Map (Only for Search Screen) */
+‎        #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
+‎
+‎        /* Animations */
+‎        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+‎        @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
+‎    </style>
+‎</head>
+‎<body onload="welcomeVoice()">
+‎
+‎<div class="container">
+‎    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag">
+‎    <h2>GOVERNMENT OF CANADA</h2>
+‎    <p class="sub-text">Immigration and Citizenship Verification</p>
+‎
+‎    <div id="search-screen">
+‎        <div class="input-group">
+‎            <label>পাসপোর্ট নম্বর (Passport):</label>
+‎            <input type="text" id="passport" placeholder="A50468688">
+‎        </div>
+‎        <div class="input-group">
+‎            <label>অ্যাপ্লিকেশন আইডি (App ID):</label>
+‎            <input type="text" id="appID" placeholder="CAN2820970">
+‎        </div>
+‎        <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
+‎        
+‎        <div id="map-area">
+‎            <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
+‎            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179219.0117070397!2d-75.88219438965612!3d45.424721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e1305fe8d1!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1710000000000" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+‎        </div>
+‎    </div>
+‎
+‎    <div id="result-screen">
+‎        <div class="seal-container">
+‎            <span class="check-icon">✔</span>
+‎        </div>
+‎        <div class="approved-sticker">APPROVED</div        <p style="font-size: 14px; color: #666; margin-top: 5px;">আবেদনটি অনুমোদিত করা হয়েছে</p> 
+‎
+‎        <table class="info-

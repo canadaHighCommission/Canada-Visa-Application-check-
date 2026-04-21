@@ -6,7 +6,7 @@
     <title>Canada Visa Verification</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 95%; max-width: 420px; text-align: center; border-top: 10px solid #d52b1e; overflow-y: auto; max-height: 90vh; }
+        .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 95%; max-width: 420px; text-align: center; border-top: 10px solid #d52b1e; overflow-y: auto; max-height: 95vh; }
         
         /* Header */
         .flag { width: 60px; margin-bottom: 8px; }
@@ -17,14 +17,18 @@
         .input-group { text-align: left; margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; color: #444; font-size: 13px; }
         input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; }
-        input:focus { border-color: #d52b1e; outline: none; }
         .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; }
+
+        /* Map Area (Search Screen Only) */
+        #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
 
         /* Result Screen */
         #result-screen { display: none; animation: slideUp 0.6s ease-out; }
         
-        /* User Profile Image & Info */
-        .user-photo { width: 110px; height: 130px; object-fit: cover; border: 3px solid #d52b1e; border-radius: 8px; margin-bottom: 10px; }
+        /* User Profile Image Fix */
+        .photo-container { margin-bottom: 15px; }
+        .user-photo { width: 120px; height: 145px; object-fit: cover; border: 3px solid #d52b1e; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); background-color: #eee; }
+
         .approved-sticker { 
             background: linear-gradient(135deg, #28a745, #218838);
             color: white; padding: 6px 20px; border-radius: 5px; 
@@ -39,14 +43,13 @@
         .label { color: #888; width: 45%; }
         .value { color: #222; font-weight: bold; }
 
-        /* Documents Section (PDF/Images) */
+        /* Documents Section */
         .docs-section { margin-top: 20px; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 10px; border: 1px solid #eee; }
         .doc-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; display: block; border-left: 4px solid #d52b1e; padding-left: 8px; }
         .doc-item { display: flex; align-items: center; background: white; padding: 10px; border-radius: 5px; margin-bottom: 8px; border: 1px solid #ddd; text-decoration: none; color: #444; font-size: 12px; }
-        .doc-item img { width: 25px; margin-right: 10px; }
-        .doc-item:hover { background: #f1f1f1; }
+        .doc-item img { width: 22px; margin-right: 10px; }
 
-        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; font-size: 12px; color: #856404; line-height: 1.4; }
+        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; font-size: 12px; color: #856404; line-height: 1.4; text-align: left; }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -68,13 +71,19 @@
             <input type="text" id="appID" placeholder="">
         </div>
         <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
+
+        <div id="map-area">
+            <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.258203525232!2d-75.7001402!3d45.42457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04ff4fe494ef%3A0x26bb54f60c29f6e!2sParliament%20Hill!5e0!3m2!1sen!2sca!4v1713000000000!5m2!1sen!2sca" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </div>
 
     <div id="result-screen">
-        <img src="38153.jpg" class="user-photo">
-        <div>
-            <div class="approved-sticker">APPROVED</div>
+        <div class="photo-container">
+            <img src="38153.jpg" class="user-photo" alt="MD ABU NASER">
         </div>
+        
+        <div class="approved-sticker">APPROVED</div>
         <p style="font-size: 13px; color: #28a745; font-weight: bold; margin-top: 5px;">✔ আবেদনটি সফলভাবে অনুমোদিত হয়েছে</p>
 
         <table class="info-table">
@@ -88,25 +97,18 @@
 
         <div class="docs-section">
             <span class="doc-title">সংযুক্ত নথিপত্র (Attached Documents)</span>
-            
-            <a href="#" class="doc-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF">
-                <span>Work_Permit_MD_ABU_NASER.pdf</span>
-            </a>
-            
-            <a href="#" class="doc-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF">
-                <span>Job_Offer_Letter_Magna_Inc.pdf</span>
-            </a>
-            
-            <a href="#" class="doc-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/337/337948.png" alt="IMG">
-                <span>Visa_Approval_Seal_Official.jpg</span>
-            </a>
+            <div class="doc-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
+                <span>Work_Permit_ABU_NASER.pdf</span>
+            </div>
+            <div class="doc-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
+                <span>Job_Offer_Magna_Inc.pdf</span>
+            </div>
         </div>
 
         <div class="success-note">
-            <strong>সফলতা!</strong> আপনার কানাডা ভিসা এবং কাজের অনুমতিপত্র ইস্যু করা হয়েছে। বিস্তারিত তথ্যের জন্য আপনার ইমেইল চেক করুন।
+            <strong>সফলতা!</strong> আপনার কানাডা ভিসা এবং কাজের অনুমতিপত্র ইস্যু করা হয়েছে।
         </div>
     </div>
 </div>
@@ -145,7 +147,7 @@
             if(ppInput === VALID_PASSPORT && idInput === VALID_APPID) {
                 document.getElementById('search-screen').style.display = 'none';
                 document.getElementById('result-screen').style.display = 'block';
-                speak("অভিনন্দন এম ডি আবু নাসের! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে এবং নথিপত্র সংযুক্ত করা হয়েছে।");
+                speak("অভিনন্দন এম ডি আবু নাসের! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে।");
             } else {
                 btn.innerHTML = "সার্চ করুন";
                 alert("তথ্য সঠিক নয়");

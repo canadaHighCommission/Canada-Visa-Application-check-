@@ -63,11 +63,11 @@
     <div id="search-screen">
         <div class="input-group">
             <label>পাসপোর্ট নম্বর (Passport):</label>
-            <input type="text" id="passport" placeholder="A21609896">
+            <input type="text" id="passport" placeholder="">
         </div>
         <div class="input-group">
             <label>অ্যাপ্লিকেশন আইডি (App ID):</label>
-            <input type="text" id="appID" placeholder="EGP87FKT51">
+            <input type="text" id="appID" placeholder="">
         </div>
         <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
         
@@ -102,7 +102,7 @@
 </div>
 
 <script>
-    // আপনার ফাইল অনুযায়ী সঠিক আইডি সেট করা হয়েছে
+    // সঠিক ডাটা ভ্যালিডেশন
     const VALID_PASSPORT = "A21609896"; 
     const VALID_APPID = "EGP87FKT51";
 
@@ -125,7 +125,7 @@
         const idInput = document.getElementById('appID').value.trim();
 
         if(!ppInput || !idInput) {
-            alert("সব তথ্য সঠিকভাবে প্রদান করুন");
+            alert("দয়া করে পাসপোর্ট এবং অ্যাপ্লিকেশন আইডি প্রদান করুন");
             return;
         }
 

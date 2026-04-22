@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Visa Verification</title>
+    <title>Canada Visa Verification Portal</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 95%; max-width: 420px; text-align: center; border-top: 10px solid #d52b1e; overflow-y: auto; max-height: 95vh; }
         
         /* Header */
         .flag { width: 60px; margin-bottom: 8px; }
-        h2 { color: #d52b1e; margin: 5px 0; font-size: 18px; letter-spacing: 1px; }
+        h2 { color: #d52b1e; margin: 5px 0; font-size: 18px; letter-spacing: 1px; text-transform: uppercase; }
         .sub-text { color: #666; font-size: 12px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
 
         /* Search Screen */
         .input-group { text-align: left; margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; color: #444; font-size: 13px; }
         input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; }
-        .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; }
+        .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .search-btn:hover { background-color: #b02318; }
 
         #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
 
@@ -40,7 +41,7 @@
         .label { color: #888; width: 45%; }
         .value { color: #222; font-weight: bold; }
 
-        /* Documents Section - Updated */
+        /* Documents Section */
         .docs-section { margin-top: 20px; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 10px; border: 1px solid #eee; }
         .doc-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; display: block; border-left: 4px solid #d52b1e; padding-left: 8px; }
         
@@ -75,18 +76,18 @@
 
     <div id="search-screen">
         <div class="input-group">
-            <label>পাসপোর্ট নম্বর (Passport):</label>
-            <input type="text" id="passport" placeholder="">
+            <label>Passport Number:</label>
+            <input type="text" id="passport" placeholder="Enter Passport No.">
         </div>
         <div class="input-group">
-            <label>অ্যাপ্লিকেশন আইডি (App ID):</label>
-            <input type="text" id="appID" placeholder="">
+            <label>Application ID:</label>
+            <input type="text" id="appID" placeholder="Enter Application ID">
         </div>
-        <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
+        <button class="search-btn" onclick="startProcess()">VERIFY STATUS</button>
 
         <div id="map-area">
-            <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.279644919574!2d-75.6974249!3d45.4243685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05ad9959f633%3A0x633971c2f9d5a890!2sParliament%20Hill!5e0!3m2!1sen!2sca!4v1713800000000!5m2!1sen!2sca" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <p style="font-size: 10px; color: #999; margin: 5px;">Office Location: Ottawa, Canada</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179213.7844005893!2d-75.8346387063462!3d45.4215296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51d13d811612!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1714123456789!5m2!1sen!2sbd" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
@@ -96,19 +97,19 @@
         </div>
         
         <div class="approved-sticker">APPROVED</div>
-        <p style="font-size: 13px; color: #28a745; font-weight: bold; margin-top: 5px;">✔ আবেদনটি সফলভাবে অনুমোদিত হয়েছে</p>
+        <p style="font-size: 13px; color: #28a745; font-weight: bold; margin-top: 5px;">✔ Application successfully verified and approved</p>
 
         <table class="info-table">
-            <tr><td class="label">নাম (Full Name):</td><td class="value">MD ABU NASER</td></tr>
-            <tr><td class="label">পাসপোর্ট নম্বর:</td><td class="value">A21609896</td></tr>
-            <tr><td class="label">ভিসার ধরন:</td><td class="value">Work Permit (IMM 1295)</td></tr>
-            <tr><td class="label">পারমিট নম্বর:</td><td class="value">Y9L3N7F0B3</td></tr>
-            <tr><td class="label">নিয়োগকর্তা:</td><td class="value">MAGNA INTERNATIONAL</td></tr>
-            <tr><td class="label">মেয়াদ (Expiry):</td><td class="value">20 March, 2031</td></tr>
+            <tr><td class="label">Full Name:</td><td class="value">MD ABU NASER</td></tr>
+            <tr><td class="label">Passport Number:</td><td class="value">A21609896</td></tr>
+            <tr><td class="label">Visa Category:</td><td class="value">Work Permit (IMM 1295)</td></tr>
+            <tr><td class="label">Permit Number:</td><td class="value">Y9L3N7F0B3</td></tr>
+            <tr><td class="label">Employer Name:</td><td class="value">MAGNA INTERNATIONAL</td></tr>
+            <tr><td class="label">Expiry Date:</td><td class="value">20 March, 2031</td></tr>
         </table>
 
         <div class="docs-section">
-            <span class="doc-title">সংযুক্ত নথিপত্র (Attached Documents)</span>
+            <span class="doc-title">Attached Official Documents</span>
             
             <a href="MD ABU NASER - Work Permit.pdf_20260329_015657_0000.pdf" target="_blank" class="doc-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
@@ -132,7 +133,7 @@
         </div>
 
         <div class="success-note">
-            <strong>সফলতা!</strong> আপনার কানাডা ভিসা এবং কাজের অনুমতিপত্র ইস্যু করা হয়েছে। উপরের লিঙ্ক থেকে ফাইলগুলো ডাউনলোড করুন।
+            <strong>Success!</strong> Your Canadian Visa and Work Permit documents have been issued. Please download the files from the links above.
         </div>
     </div>
 </div>
@@ -143,15 +144,15 @@
 
     function welcomeVoice() {
         const msg = new SpeechSynthesisUtterance();
-        msg.text = "স্বাগতম আপনাকে কানাডা ভিসা অনলাইন প্ল্যাটফর্মে";
-        msg.lang = 'bn-BD';
+        msg.text = "Welcome to Canada Visa Online Platform";
+        msg.lang = 'en-US';
         window.speechSynthesis.speak(msg);
     }
 
     function speak(text) {
         const msg = new SpeechSynthesisUtterance();
         msg.text = text;
-        msg.lang = 'bn-BD';
+        msg.lang = 'en-US';
         window.speechSynthesis.speak(msg);
     }
 
@@ -160,22 +161,22 @@
         const idInput = document.getElementById('appID').value.trim();
 
         if(!ppInput || !idInput) {
-            alert("তথ্য প্রদান করুন");
+            alert("Please provide required information");
             return;
         }
 
         const btn = document.querySelector('.search-btn');
-        btn.innerHTML = "যাচাই করা হচ্ছে...";
+        btn.innerHTML = "Verifying...";
 
         setTimeout(() => {
             if(ppInput === VALID_PASSPORT && idInput === VALID_APPID) {
                 document.getElementById('search-screen').style.display = 'none';
                 document.getElementById('result-screen').style.display = 'block';
-                speak("অভিনন্দন এম ডি আবু নাসের! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে।");
+                speak("Congratulations MD Abu Naser! Your application is successfully approved.");
             } else {
-                btn.innerHTML = "সার্চ করুন";
-                alert("তথ্য সঠিক নয়");
-                speak("দুঃখিত তথ্যটি পাওয়া যায়নি");
+                btn.innerHTML = "VERIFY STATUS";
+                alert("Invalid Information provided");
+                speak("Sorry, information not found.");
             }
         }, 2000);
     }

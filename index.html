@@ -9,47 +9,42 @@
         .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 95%; max-width: 420px; text-align: center; border-top: 10px solid #d52b1e; overflow-y: auto; max-height: 95vh; }
         
         /* Header */
-        .flag { width: 60px; margin-bottom: 8px; }
-        h2 { color: #d52b1e; margin: 5px 0; font-size: 18px; letter-spacing: 1px; }
-        .sub-text { color: #666; font-size: 12px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .flag { width: 65px; margin-bottom: 8px; }
+        h2 { color: #d52b1e; margin: 5px 0; font-size: 19px; letter-spacing: 1px; }
+        .sub-text { color: #666; font-size: 13px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
 
         /* Search Screen */
         .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; color: #444; font-size: 13px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; font-size: 14px; }
         input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; }
         .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; }
 
-        /* Map Area (Search Screen Only) */
         #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
 
         /* Result Screen */
         #result-screen { display: none; animation: slideUp 0.6s ease-out; }
         
-        /* User Profile Image Fix */
-        .photo-container { margin-bottom: 15px; }
-        .user-photo { width: 120px; height: 145px; object-fit: cover; border: 3px solid #d52b1e; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); background-color: #eee; }
+        /* User Photo Container */
+        .photo-container { margin: 15px auto; width: 140px; height: 170px; border: 4px solid #d52b1e; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.15); background-color: #f0f0f0; position: relative; }
+        .user-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        .approved-sticker { 
-            background: linear-gradient(135deg, #28a745, #218838);
-            color: white; padding: 6px 20px; border-radius: 5px; 
-            font-weight: 900; font-size: 16px; display: inline-block;
-            transform: rotate(-3deg); border: 2px dashed #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 5px 0;
-        }
+        .approved-sticker { background: linear-gradient(135deg, #28a745, #218838); color: white; padding: 8px 25px; border-radius: 5px; font-weight: 900; font-size: 18px; display: inline-block; transform: rotate(-3deg); border: 2px dashed #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 10px 0; }
 
-        /* Info Table */
-        .info-table { width: 100%; margin-top: 15px; border-collapse: collapse; text-align: left; }
-        .info-table td { padding: 8px 5px; border-bottom: 1px solid #f1f1f1; font-size: 13px; }
+        /* Information Table */
+        .info-table { width: 100%; margin-top: 20px; border-collapse: collapse; text-align: left; }
+        .info-table td { padding: 10px 5px; border-bottom: 1px solid #f1f1f1; font-size: 14px; }
         .label { color: #888; width: 45%; }
         .value { color: #222; font-weight: bold; }
 
-        /* Documents Section */
-        .docs-section { margin-top: 20px; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 10px; border: 1px solid #eee; }
-        .doc-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; display: block; border-left: 4px solid #d52b1e; padding-left: 8px; }
-        .doc-item { display: flex; align-items: center; background: white; padding: 10px; border-radius: 5px; margin-bottom: 8px; border: 1px solid #ddd; text-decoration: none; color: #444; font-size: 12px; }
-        .doc-item img { width: 22px; margin-right: 10px; }
+        /* Documents Section (PDF Section) */
+        .docs-section { margin-top: 25px; text-align: left; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #e0e0e0; }
+        .doc-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 12px; display: block; border-left: 5px solid #d52b1e; padding-left: 10px; }
+        
+        .doc-link { display: flex; align-items: center; background: white; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd; text-decoration: none; color: #d52b1e; font-weight: 600; font-size: 13px; transition: 0.2s; }
+        .doc-link:hover { background: #f9f9f9; border-color: #d52b1e; }
+        .doc-icon { width: 24px; height: 24px; margin-right: 12px; }
 
-        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; font-size: 12px; color: #856404; line-height: 1.4; text-align: left; }
+        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 15px; margin-top: 20px; font-size: 13px; color: #856404; line-height: 1.5; border-radius: 0 8px 8px 0; }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -74,41 +69,43 @@
 
         <div id="map-area">
             <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.258203525232!2d-75.7001402!3d45.42457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04ff4fe494ef%3A0x26bb54f60c29f6e!2sParliament%20Hill!5e0!3m2!1sen!2sca!4v1713000000000!5m2!1sen!2sca" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.123456789!2d-75.6972!3d45.4215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDI1JzE3LjQiTiA3NcKwNDEnNTAuMCJX!5e0!3m2!1sen!2sca!4v1620000000000" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
     <div id="result-screen">
         <div class="photo-container">
-            <img src="38153.jpg" class="user-photo" alt="MD ABU NASER">
+            <img src="38153.jpg" class="user-photo" alt="MD ABU NASER Photo">
         </div>
         
         <div class="approved-sticker">APPROVED</div>
-        <p style="font-size: 13px; color: #28a745; font-weight: bold; margin-top: 5px;">✔ আবেদনটি সফলভাবে অনুমোদিত হয়েছে</p>
+        <p style="font-size: 14px; color: #28a745; font-weight: bold; margin-top: 5px;">✔ আবেদনটি অনুমোদিত হয়েছে</p>
 
         <table class="info-table">
             <tr><td class="label">নাম (Full Name):</td><td class="value">MD ABU NASER</td></tr>
             <tr><td class="label">পাসপোর্ট নম্বর:</td><td class="value">A21609896</td></tr>
             <tr><td class="label">ভিসার ধরন:</td><td class="value">Work Permit (IMM 1295)</td></tr>
             <tr><td class="label">পারমিট নম্বর:</td><td class="value">Y9L3N7F0B3</td></tr>
-            <tr><td class="label">নিয়োগকর্তা:</td><td class="value">MAGNA INTERNATIONAL</td></tr>
+            <tr><td class="label">রেফারেন্স আইডি:</td><td class="value">EGP87FKT51</td></tr>
             <tr><td class="label">মেয়াদ (Expiry):</td><td class="value">20 March, 2031</td></tr>
         </table>
 
         <div class="docs-section">
-            <span class="doc-title">সংযুক্ত নথিপত্র (Attached Documents)</span>
-            <div class="doc-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
-                <span>Work_Permit_ABU_NASER.pdf</span>
-            </div>
-            <div class="doc-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
-                <span>Job_Offer_Magna_Inc.pdf</span>
-            </div>
+            <span class="doc-title">ডকুমেন্ট ফাইল (Documents)</span>
+            
+            <a href="MD ABU NASER - Work Permit.pdf" target="_blank" class="doc-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" class="doc-icon">
+                View Work Permit (PDF)
+            </a>
+
+            <a href="MD ABU NASER - Job offer letter.pdf" target="_blank" class="doc-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" class="doc-icon">
+                View Job Offer Letter (PDF)
+            </a>
         </div>
 
         <div class="success-note">
-            <strong>সফলতা!</strong> আপনার কানাডা ভিসা এবং কাজের অনুমতিপত্র ইস্যু করা হয়েছে।
+            <strong>অভিনন্দন!</strong> আপনার ফাইলগুলো সফলভাবে ভেরিফাই করা হয়েছে। আপনার কাজের অনুমতিপত্র উপরে দেওয়া লিঙ্কে পাওয়া যাবে।
         </div>
     </div>
 </div>
@@ -136,7 +133,7 @@
         const idInput = document.getElementById('appID').value.trim();
 
         if(!ppInput || !idInput) {
-            alert("তথ্য প্রদান করুন");
+            alert("অনুগ্রহ করে তথ্য প্রদান করুন");
             return;
         }
 
@@ -147,11 +144,10 @@
             if(ppInput === VALID_PASSPORT && idInput === VALID_APPID) {
                 document.getElementById('search-screen').style.display = 'none';
                 document.getElementById('result-screen').style.display = 'block';
-                speak("অভিনন্দন এম ডি আবু নাসের! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে।");
+                speak("অভিনন্দন এম ডি আবু নাসের! আপনার ভিসা এবং কাজের অনুমতিপত্র অনুমোদিত হয়েছে।");
             } else {
                 btn.innerHTML = "সার্চ করুন";
-                alert("তথ্য সঠিক নয়");
-                speak("দুঃখিত তথ্যটি পাওয়া যায়নি");
+                alert("দুঃখিত! তথ্য সঠিক নয়।");
             }
         }, 2000);
     }

@@ -19,13 +19,11 @@
         input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; }
         .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; }
 
-        /* Map Area (Search Screen Only) */
         #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
 
         /* Result Screen */
         #result-screen { display: none; animation: slideUp 0.6s ease-out; }
         
-        /* User Profile Image Fix */
         .photo-container { margin-bottom: 15px; }
         .user-photo { width: 120px; height: 145px; object-fit: cover; border: 3px solid #d52b1e; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); background-color: #eee; }
 
@@ -37,17 +35,31 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 5px 0;
         }
 
-        /* Info Table */
         .info-table { width: 100%; margin-top: 15px; border-collapse: collapse; text-align: left; }
         .info-table td { padding: 8px 5px; border-bottom: 1px solid #f1f1f1; font-size: 13px; }
         .label { color: #888; width: 45%; }
         .value { color: #222; font-weight: bold; }
 
-        /* Documents Section */
+        /* Documents Section - Updated */
         .docs-section { margin-top: 20px; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 10px; border: 1px solid #eee; }
         .doc-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; display: block; border-left: 4px solid #d52b1e; padding-left: 8px; }
-        .doc-item { display: flex; align-items: center; background: white; padding: 10px; border-radius: 5px; margin-bottom: 8px; border: 1px solid #ddd; text-decoration: none; color: #444; font-size: 12px; }
-        .doc-item img { width: 22px; margin-right: 10px; }
+        
+        .doc-item { 
+            display: flex; 
+            align-items: center; 
+            background: white; 
+            padding: 12px; 
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+            border: 1px solid #ddd; 
+            text-decoration: none; 
+            color: #333; 
+            font-size: 12px; 
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .doc-item:hover { background-color: #fff5f5; border-color: #d52b1e; }
+        .doc-item img { width: 22px; margin-right: 12px; }
 
         .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; font-size: 12px; color: #856404; line-height: 1.4; text-align: left; }
 
@@ -74,7 +86,7 @@
 
         <div id="map-area">
             <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.258203525232!2d-75.7001402!3d45.42457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04ff4fe494ef%3A0x26bb54f60c29f6e!2sParliament%20Hill!5e0!3m2!1sen!2sca!4v1713000000000!5m2!1sen!2sca" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.279644919574!2d-75.6974249!3d45.4243685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05ad9959f633%3A0x633971c2f9d5a890!2sParliament%20Hill!5e0!3m2!1sen!2sca!4v1713800000000!5m2!1sen!2sca" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
@@ -97,18 +109,30 @@
 
         <div class="docs-section">
             <span class="doc-title">সংযুক্ত নথিপত্র (Attached Documents)</span>
-            <div class="doc-item">
+            
+            <a href="MD ABU NASER - Work Permit.pdf_20260329_015657_0000.pdf" target="_blank" class="doc-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
-                <span>Work_Permit_ABU_NASER.pdf</span>
-            </div>
-            <div class="doc-item">
+                <span>View Work Permit (PDF)</span>
+            </a>
+
+            <a href="MD ABU NASER - Job offer letter _20260329_020845_0000.pdf" target="_blank" class="doc-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
-                <span>Job_Offer_Magna_Inc.pdf</span>
-            </div>
+                <span>View Job Offer Letter (PDF)</span>
+            </a>
+
+            <a href="MD ABU NASER - LMAI.pdf" target="_blank" class="doc-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
+                <span>View LMIA Document (PDF)</span>
+            </a>
+
+            <a href="Passport Request.pdf" target="_blank" class="doc-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
+                <span>View Passport Request Letter (PDF)</span>
+            </a>
         </div>
 
         <div class="success-note">
-            <strong>সফলতা!</strong> আপনার কানাডা ভিসা এবং কাজের অনুমতিপত্র ইস্যু করা হয়েছে।
+            <strong>সফলতা!</strong> আপনার কানাডা ভিসা এবং কাজের অনুমতিপত্র ইস্যু করা হয়েছে। উপরের লিঙ্ক থেকে ফাইলগুলো ডাউনলোড করুন।
         </div>
     </div>
 </div>

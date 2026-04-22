@@ -3,153 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Visa Verification</title>
+    <title>Canada Visa Verification Portal</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 95%; max-width: 420px; text-align: center; border-top: 10px solid #d52b1e; overflow-y: auto; max-height: 95vh; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 100%; max-width: 450px; text-align: center; border-top: 8px solid #d52b1e; }
         
-        /* Header */
-        .flag { width: 65px; margin-bottom: 8px; }
-        h2 { color: #d52b1e; margin: 5px 0; font-size: 19px; letter-spacing: 1px; }
-        .sub-text { color: #666; font-size: 13px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-
-        /* Search Screen */
+        /* Search Box */
         .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; font-size: 14px; }
-        input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; }
-        .search-btn { width: 100%; padding: 15px; background-color: #d52b1e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; font-size: 14px; }
+        input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .search-btn { width: 100%; padding: 15px; background: #d52b1e; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
 
-        #map-area { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; }
+        /* Map */
+        #map-area { margin-top: 15px; border-radius: 10px; overflow: hidden; border: 1px solid #ccc; }
 
-        /* Result Screen */
-        #result-screen { display: none; animation: slideUp 0.6s ease-out; }
-        
-        /* User Photo Container */
-        .photo-container { margin: 15px auto; width: 140px; height: 170px; border: 4px solid #d52b1e; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.15); background-color: #f0f0f0; position: relative; }
-        .user-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+        /* Result Section */
+        #result-screen { display: none; animation: fadeIn 0.5s ease-in; }
+        .user-photo { width: 130px; height: 160px; border: 3px solid #d52b1e; border-radius: 10px; margin: 15px auto; display: block; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .approved-sticker { background: #28a745; color: white; padding: 8px 20px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 10px; border: 2px dashed #fff; }
 
-        .approved-sticker { background: linear-gradient(135deg, #28a745, #218838); color: white; padding: 8px 25px; border-radius: 5px; font-weight: 900; font-size: 18px; display: inline-block; transform: rotate(-3deg); border: 2px dashed #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 10px 0; }
+        /* Table */
+        .info-table { width: 100%; margin-top: 15px; border-collapse: collapse; text-align: left; font-size: 14px; }
+        .info-table td { padding: 10px; border-bottom: 1px solid #eee; }
+        .label { color: #666; font-weight: 600; }
+        .value { color: #000; font-weight: bold; text-align: right; }
 
-        /* Information Table */
-        .info-table { width: 100%; margin-top: 20px; border-collapse: collapse; text-align: left; }
-        .info-table td { padding: 10px 5px; border-bottom: 1px solid #f1f1f1; font-size: 14px; }
-        .label { color: #888; width: 45%; }
-        .value { color: #222; font-weight: bold; }
+        /* PDF Preview Area */
+        .docs-section { margin-top: 20px; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 10px; }
+        .doc-btn { display: flex; align-items: center; justify-content: space-between; background: white; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ddd; text-decoration: none; color: #d52b1e; font-weight: bold; cursor: pointer; }
+        .doc-btn:hover { background: #fff5f5; }
 
-        /* Documents Section (PDF Section) */
-        .docs-section { margin-top: 25px; text-align: left; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #e0e0e0; }
-        .doc-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 12px; display: block; border-left: 5px solid #d52b1e; padding-left: 10px; }
-        
-        .doc-link { display: flex; align-items: center; background: white; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd; text-decoration: none; color: #d52b1e; font-weight: 600; font-size: 13px; transition: 0.2s; }
-        .doc-link:hover { background: #f9f9f9; border-color: #d52b1e; }
-        .doc-icon { width: 24px; height: 24px; margin-right: 12px; }
+        /* Full Screen Preview Frame */
+        #preview-box { display: none; margin-top: 20px; border: 2px solid #ddd; border-radius: 10px; height: 400px; width: 100%; background: #eee; }
+        iframe { width: 100%; height: 100%; border: none; }
 
-        .success-note { background-color: #fff9e6; border-left: 4px solid #ffc107; padding: 15px; margin-top: 20px; font-size: 13px; color: #856404; line-height: 1.5; border-radius: 0 8px 8px 0; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body onload="welcomeVoice()">
+<body>
 
 <div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag">
-    <h2>GOVERNMENT OF CANADA</h2>
-    <p class="sub-text">Immigration and Citizenship Verification</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" width="60" style="margin-bottom:10px;">
+    <h2 style="color:#d52b1e; margin:0;">GOVERNMENT OF CANADA</h2>
+    <p style="color:#666; font-size:12px; margin-bottom:20px;">Official Visa Verification System</p>
 
     <div id="search-screen">
         <div class="input-group">
-            <label>পাসপোর্ট নম্বর (Passport):</label>
-            <input type="text" id="passport" placeholder="">
+            <label>Passport Number:</label>
+            <input type="text" id="passport" placeholder="Enter Passport No.">
         </div>
         <div class="input-group">
-            <label>অ্যাপ্লিকেশন আইডি (App ID):</label>
-            <input type="text" id="appID" placeholder="">
+            <label>Application ID:</label>
+            <input type="text" id="appID" placeholder="Enter Application ID">
         </div>
-        <button class="search-btn" onclick="startProcess()">সার্চ করুন</button>
-
+        <button class="search-btn" onclick="verify()">Search Now</button>
+        
         <div id="map-area">
-            <p style="font-size: 10px; color: #999; margin: 5px;">অফিস লোকেশন: অটোয়া, কানাডা</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.123456789!2d-75.6972!3d45.4215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDI1JzE3LjQiTiA3NcKwNDEnNTAuMCJX!5e0!3m2!1sen!2sca!4v1620000000000" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <p style="font-size: 10px; color: #999; margin: 5px;">Headquarters: Ottawa, Canada</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179213.9189689871!2d-75.881476311091!3d45.3855871891961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e1305e16c!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1711700000000" height="150"></iframe>
         </div>
     </div>
 
     <div id="result-screen">
-        <div class="photo-container">
-            <img src="38153.jpg" class="user-photo" alt="MD ABU NASER Photo">
-        </div>
+        <img src="38153.jpg" class="user-photo" id="userImg" onerror="this.src='https://via.placeholder.com/130x160?text=Photo+Not+Found'">
         
-        <div class="approved-sticker">APPROVED</div>
-        <p style="font-size: 14px; color: #28a745; font-weight: bold; margin-top: 5px;">✔ আবেদনটি অনুমোদিত হয়েছে</p>
+        <div class="approved-sticker">✔ VISA APPROVED</div>
 
         <table class="info-table">
-            <tr><td class="label">নাম (Full Name):</td><td class="value">MD ABU NASER</td></tr>
-            <tr><td class="label">পাসপোর্ট নম্বর:</td><td class="value">A21609896</td></tr>
-            <tr><td class="label">ভিসার ধরন:</td><td class="value">Work Permit (IMM 1295)</td></tr>
-            <tr><td class="label">পারমিট নম্বর:</td><td class="value">Y9L3N7F0B3</td></tr>
-            <tr><td class="label">রেফারেন্স আইডি:</td><td class="value">EGP87FKT51</td></tr>
-            <tr><td class="label">মেয়াদ (Expiry):</td><td class="value">20 March, 2031</td></tr>
+            <tr><td class="label">Name:</td><td class="value">MD ABU NASER</td></tr>
+            <tr><td class="label">Passport:</td><td class="value" id="disp-pp"></td></tr>
+            <tr><td class="label">Visa Type:</td><td class="value">Work Permit</td></tr>
+            <tr><td class="label">Expiry:</td><td class="value">20 March, 2031</td></tr>
         </table>
 
         <div class="docs-section">
-            <span class="doc-title">ডকুমেন্ট ফাইল (Documents)</span>
+            <p style="font-weight:bold; font-size:13px; color:#333; border-left:4px solid #d52b1e; padding-left:8px; margin-bottom:15px;">Official Attachments</p>
             
-            <a href="MD ABU NASER - Work Permit.pdf" target="_blank" class="doc-link">
-                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" class="doc-icon">
-                View Work Permit (PDF)
-            </a>
+            <div class="doc-btn" onclick="showDoc('MD ABU NASER - Work Permit.pdf_20260329_015657_0000.pdf')">
+                <span>📄 View Work Permit</span>
+                <span style="font-size:10px; color:#999;">OPEN</span>
+            </div>
 
-            <a href="MD ABU NASER - Job offer letter.pdf" target="_blank" class="doc-link">
-                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" class="doc-icon">
-                View Job Offer Letter (PDF)
-            </a>
+            <div class="doc-btn" onclick="showDoc('MD ABU NASER - Job offer letter _20260329_020845_0000.pdf')">
+                <span>📄 Job Offer Letter</span>
+                <span style="font-size:10px; color:#999;">OPEN</span>
+            </div>
         </div>
 
-        <div class="success-note">
-            <strong>অভিনন্দন!</strong> আপনার ফাইলগুলো সফলভাবে ভেরিফাই করা হয়েছে। আপনার কাজের অনুমতিপত্র উপরে দেওয়া লিঙ্কে পাওয়া যাবে।
+        <div id="preview-box">
+            <iframe id="doc-iframe" src=""></iframe>
         </div>
+
+        <p style="font-size:11px; color:#856404; background:#fff9e6; padding:10px; border-radius:5px; margin-top:15px; text-align:left;">
+            <b>Success!</b> Your Canadian Work Permit has been verified. You can preview the documents above.
+        </p>
     </div>
 </div>
 
 <script>
-    const VALID_PASSPORT = "A21609896"; 
-    const VALID_APPID = "EGP87FKT51";
+    const VALID_PP = "A21609896";
+    const VALID_ID = "EGP87FKT51";
 
-    function welcomeVoice() {
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = "স্বাগতম আপনাকে কানাডা ভিসা অনলাইন প্ল্যাটফর্মে";
-        msg.lang = 'bn-BD';
-        window.speechSynthesis.speak(msg);
-    }
+    function verify() {
+        const pp = document.getElementById('passport').value.trim();
+        const id = document.getElementById('appID').value.trim();
 
-    function speak(text) {
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = text;
-        msg.lang = 'bn-BD';
-        window.speechSynthesis.speak(msg);
-    }
-
-    function startProcess() {
-        const ppInput = document.getElementById('passport').value.trim();
-        const idInput = document.getElementById('appID').value.trim();
-
-        if(!ppInput || !idInput) {
-            alert("অনুগ্রহ করে তথ্য প্রদান করুন");
-            return;
+        if(pp === VALID_PP && id === VALID_ID) {
+            document.getElementById('search-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+            document.getElementById('disp-pp').innerText = pp;
+            
+            const msg = new SpeechSynthesisUtterance("Congratulations! Your visa is approved.");
+            window.speechSynthesis.speak(msg);
+        } else {
+            alert("Invalid Information! Please check again.");
         }
+    }
 
-        const btn = document.querySelector('.search-btn');
-        btn.innerHTML = "যাচাই করা হচ্ছে...";
-
-        setTimeout(() => {
-            if(ppInput === VALID_PASSPORT && idInput === VALID_APPID) {
-                document.getElementById('search-screen').style.display = 'none';
-                document.getElementById('result-screen').style.display = 'block';
-                speak("অভিনন্দন এম ডি আবু নাসের! আপনার ভিসা এবং কাজের অনুমতিপত্র অনুমোদিত হয়েছে।");
-            } else {
-                btn.innerHTML = "সার্চ করুন";
-                alert("দুঃখিত! তথ্য সঠিক নয়।");
-            }
-        }, 2000);
+    function showDoc(fileName) {
+        const preview = document.getElementById('preview-box');
+        const iframe = document.getElementById('doc-iframe');
+        
+        preview.style.display = 'block';
+        iframe.src = fileName;
+        
+        // Scroll to the preview area
+        preview.scrollIntoView({ behavior: 'smooth' });
     }
 </script>
 

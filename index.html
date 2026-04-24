@@ -87,48 +87,48 @@
 
         <div id="map-area">
             <p style="font-size: 10px; color: #999; margin: 5px;">Office Location: Ottawa, Canada</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179213.7844005893!2d-75.8346387063462!3d45.4215296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51d13d811612!2sOttawa%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sbd!4v1714123456789!5m2!1sen!2sbd" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.255959143899!2d-75.69830862343897!3d45.42434673676251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05020739955d%3A0x677b1e600ef26d4d!2sParliament%20Hill!5e0!3m2!1sen!2sca!4v1711684342345!5m2!1sen!2sca" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
     <div id="result-screen">
         <div class="photo-container">
-            <img src="38153.jpg" class="user-photo" alt="MD ABU NASER">
+            <img src="38650.jpg" class="user-photo" alt="MD MAMUN SARKER">
         </div>
         
         <div class="approved-sticker">APPROVED</div>
         <p style="font-size: 13px; color: #28a745; font-weight: bold; margin-top: 5px;">✔ Application successfully verified and approved</p>
 
         <table class="info-table">
-            <tr><td class="label">Full Name:</td><td class="value">MD ABU NASER</td></tr>
-            <tr><td class="label">Passport Number:</td><td class="value">A21609896</td></tr>
+            <tr><td class="label">Full Name:</td><td class="value">MD MAMUN SARKER</td></tr>
+            <tr><td class="label">Passport Number:</td><td class="value">A12427399</td></tr>
             <tr><td class="label">Visa Category:</td><td class="value">Work Permit (IMM 1295)</td></tr>
             <tr><td class="label">Permit Number:</td><td class="value">Y9L3N7F0B3</td></tr>
             <tr><td class="label">Employer Name:</td><td class="value">MAGNA INTERNATIONAL</td></tr>
-            <tr><td class="label">Expiry Date:</td><td class="value">20 March, 2031</td></tr>
+            <tr><td class="label">Expiry Date:</td><td class="value">27 February, 2031</td></tr>
         </table>
 
         <div class="docs-section">
             <span class="doc-title">Attached Official Documents</span>
             
-            <a href="MD ABU NASER - Work Permit.pdf_20260329_015657_0000.pdf" target="_blank" class="doc-item">
+            <a href="MAMUN SARKER - Work Permit.pdf" target="_blank" class="doc-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
                 <span>View Work Permit (PDF)</span>
             </a>
 
-            <a href="MD ABU NASER - Job offer letter _20260329_020845_0000.pdf" target="_blank" class="doc-item">
+            <a href="MAMUN SARKER JOB LETTER.pdf" target="_blank" class="doc-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
                 <span>View Job Offer Letter (PDF)</span>
             </a>
 
-            <a href="MD ABU NASER - LMAI.pdf" target="_blank" class="doc-item">
+            <a href="MAMUN SARKER - LMAI.pdf" target="_blank" class="doc-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
                 <span>View LMIA Document (PDF)</span>
             </a>
 
-            <a href="Passport Request.pdf" target="_blank" class="doc-item">
+            <a href="MAMUN SARKER APPLICATION  APPLY_.pdf" target="_blank" class="doc-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
-                <span>View Passport Request Letter (PDF)</span>
+                <span>View Application Copy (PDF)</span>
             </a>
         </div>
 
@@ -139,7 +139,8 @@
 </div>
 
 <script>
-    const VALID_PASSPORT = "A21609896"; 
+    // মামুন সরকারের পাসপোর্ট এবং অ্যাপ্লিকেশন আইডি
+    const VALID_PASSPORT = "A12427399"; 
     const VALID_APPID = "EGP87FKT51";
 
     function welcomeVoice() {
@@ -172,7 +173,7 @@
             if(ppInput === VALID_PASSPORT && idInput === VALID_APPID) {
                 document.getElementById('search-screen').style.display = 'none';
                 document.getElementById('result-screen').style.display = 'block';
-                speak("Congratulations MD Abu Naser! Your application is successfully approved.");
+                speak("Congratulations Mamun Sarker! Your application is successfully approved.");
             } else {
                 btn.innerHTML = "VERIFY STATUS";
                 alert("Invalid Information provided");
